@@ -52,9 +52,7 @@ def run(data):
 def get_size(row, col, board):
         
     me = board[row][col]
-    if me >= 9:
-        return 10       # so we don't double count
-    board[row][col] = 10
+    board[row][col] = 10     # so we don't double count
 
     # print("---------------")
     # for line in board:
