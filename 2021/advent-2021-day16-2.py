@@ -12,11 +12,6 @@ def run(parts):
     
     # print(f"parts: {parts}")
     
-    # if len(parts) <= 6:     # TODO: not sure the minimum, start here
-    #     print(f"Not enough parts to process again: {parts}")
-    #     #return results, parts
-    #     break
-        
     v, t = int("".join(parts[0:3]), 2), int("".join(parts[3:6]), 2)
     parts[:] = parts[6:]
 
