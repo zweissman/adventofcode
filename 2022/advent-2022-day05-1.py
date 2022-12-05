@@ -24,5 +24,5 @@ def run(stacks, moves, debug=False):
 
 if __name__ == "__main__":
 #    results = run(DATA_TEST_STACKS, DATA_TEST_MOVES, debug=True)
-    results = run(DATA, MOVES)
-    print (results)
+    results = run(DATA, MOVES, debug=False)
+    print("ANSWER:", results)
