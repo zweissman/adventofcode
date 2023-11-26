@@ -1,5 +1,6 @@
-DATA_TEST = ['Player 1 starting position: 4','Player 2 starting position: 8']
-DATA = ['Player 1 starting position: 2','Player 2 starting position: 5']
+DATA_TEST = ["Player 1 starting position: 4", "Player 2 starting position: 8"]
+DATA = ["Player 1 starting position: 2", "Player 2 starting position: 5"]
+
 
 def run(p1, p2):
     roll_count = 0
@@ -10,7 +11,7 @@ def run(p1, p2):
         roll_count += 3
         roll = die.__next__()
         print(f"{roll_count}: {roll}: {p1_score, p2_score}")
-       # roll_total = sum([x for x in die])
+        # roll_total = sum([x for x in die])
         if turn is p1:
             p1 += roll
             p1_score += get_score(p1)
@@ -24,11 +25,13 @@ def run(p1, p2):
 
     return results
 
+
 def get_score(score):
     score = score % 10
     if score == 0:
         return 10
     return score
+
 
 def roll_die(count=3):
     i = 0
@@ -43,11 +46,12 @@ def roll_die(count=3):
         yield results
         results = 0
 
+
 if __name__ == "__main__":
     data = DATA
     p1 = data[0]
-    p1 = int(p1.split(': ')[1])
+    p1 = int(p1.split(": ")[1])
     p2 = data[1]
-    p2 = int(p2.split(': ')[1])
+    p2 = int(p2.split(": ")[1])
     results = run(p1, p2)
-    print (results)
+    print(results)

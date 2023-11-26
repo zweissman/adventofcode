@@ -1,5 +1,5 @@
-data = ['#############','#...........#','###A#D#B#C###','  #B#C#D#A#','  #########']
-data = 'AB DC BD CA'
+data = ["#############", "#...........#", "###A#D#B#C###", "  #B#C#D#A#", "  #########"]
+data = "AB DC BD CA"
 rooms = [*map(list, data.split())]
 
 start = [0, ["."] * 11, rooms]
@@ -55,9 +55,7 @@ def steps(state):
                         nr[ind].append(state[1][i])
                         res.append(
                             [
-                                state[0]
-                                + costs[state[1][i]]
-                                * (abs(i - j) + 5 - len(nr[ind])),
+                                state[0] + costs[state[1][i]] * (abs(i - j) + 5 - len(nr[ind])),
                                 nh,
                                 nr,
                             ]
