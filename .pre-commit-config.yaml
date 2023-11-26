@@ -57,7 +57,7 @@ repos:
     hooks:
       - id: commitlint
         stages: [commit-msg]
-        args: [--config, /app/config/default/.commitlintrc.js]
+          #        args: [--config, /app/config/default/.commitlintrc.js]
   - repo: https://github.com/hadolint/hadolint
     rev: v2.12.0
     hooks:
