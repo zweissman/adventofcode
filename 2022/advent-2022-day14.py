@@ -178,21 +178,14 @@ DATA = [
 ]
 
 
-def run(part, test_run=False, debug=False):
-    if test_run:
-        data = DATA_TEST
-    else:
-        data = DATA
-
-    if part == 1:
-        part = part1
-    else:
-        part = part2
+def run(part, test_run=False, debug=False):  # pylint: disable=duplicate-code
+    data = DATA_TEST if test_run else DATA
+    part = part1 if part == 1 else part2
 
     return part(data, debug)
 
 
-def part1(data, debug=False):
+def part1(data, debug=False):  # pylint: disable=duplicate-code
     left = 999999
     right = 0
     depth = 0
@@ -246,7 +239,7 @@ def part1(data, debug=False):
     return sand_count - 1
 
 
-def part2(data, debug=False):
+def part2(data, debug=False):  # pylint: disable=duplicate-code
     left = 999999
     right = 0
     depth = 0
@@ -341,5 +334,5 @@ def show(grid):
 
 
 if __name__ == "__main__":
-    final_results = run(part=2, test_run=False, debug=False)
-    print("ANSWER:", final_results)
+    final = run(part=2, test_run=False, debug=False)
+    print("ANSWER:", final)

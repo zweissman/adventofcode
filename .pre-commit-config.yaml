@@ -36,7 +36,8 @@ repos:
         args: [
           "-rn", # Only display messages
           "-sn", # Don't display the score
-          "--disable=line-too-long,missing-module-docstring,invalid-name,missing-function-docstring,too-many-locals"
+          "--disable=line-too-long,invalid-name,too-many-locals,broad-exception-raised",
+          "--disable=missing-module-docstring,missing-class-docstring,missing-function-docstring"
         ]
   # - repo: https://github.com/pycqa/flake8
   #   rev: 6.1.0

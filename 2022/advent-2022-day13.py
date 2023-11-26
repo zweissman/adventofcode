@@ -1,3 +1,7 @@
+# pylint: disable=too-many-return-statements,too-many-branches
+
+from ast import literal_eval
+
 DATA_TEST = [
     "[1,1,3,1,1]",
     "[1,1,5,1,1]",
@@ -476,9 +480,16 @@ DATA = [
 ]
 
 
-class Thing(object):
+def run(part, test_run=False, debug=False):  # pylint: disable=duplicate-code
+    data = DATA_TEST if test_run else DATA
+    part = part1 if part == 1 else part2
+
+    return part(data, debug)
+
+
+class Thing:
     def __init__(self, item):
-        self.item = eval(item)
+        self.item = literal_eval(item)
 
     def __lt__(self, right):
         result = compare(self.item, right.item)
@@ -509,11 +520,11 @@ def compare(left, right):
         return 0
 
     if isinstance(left, list) and isinstance(right, list):
-        for i in range(len(left)):
+        for i, start in enumerate(left):
             if i >= len(right):
                 return -1
 
-            result = compare(left[i], right[i])
+            result = compare(start, right[i])
             if result != 0:
                 return result
 
@@ -524,17 +535,48 @@ def compare(left, right):
             return -1
         return 0
 
-    if type(left) != type(right):
+    if type(left) != type(right):  # pylint: disable=unidiomatic-typecheck
         if isinstance(left, list) and isinstance(right, int):
             right = [right]
         elif isinstance(left, int) and isinstance(right, list):
             left = [left]
         else:
-            raise Exception(f"Unknwown type combo", type(left), type(right))
+            raise Exception("Unknown type combo", type(left), type(right))
     return compare(left, right)
 
 
-def run(data, debug=False):
+def part1(data, debug=False):  # pylint: disable=duplicate-code
+    right_orders = []
+    i = 0
+
+    while len(data) > 0:
+        i += 1
+        left = literal_eval(data.pop(0))
+        right = literal_eval(data.pop(0))
+        if len(data) > 0:
+            data.pop(0)
+
+        if debug:
+            print(i, left, right)
+
+        result = 0
+        for i, start in enumerate(left):
+            if i >= len(right):
+                break
+            result = compare(start, right[i])
+            if result == 1:
+                right_orders.append(i)
+                break
+            if result == -1:
+                break
+
+        if result == 0 and len(left) < len(right):
+            right_orders.append(i)
+
+    return sum(right_orders)
+
+
+def part2(data, debug=False):  # pylint: disable=duplicate-code
     items = []
     data.append("[[2]]")
     data.append("[[6]]")
@@ -550,10 +592,11 @@ def run(data, debug=False):
     i2 = items.index(Thing("[[2]]")) + 1
     i6 = items.index(Thing("[[6]]")) + 1
 
+    if debug:
+        print(f"{i2=}, {i6=}")
     return i2 * i6
 
 
 if __name__ == "__main__":
-    #    results = run(DATA_TEST, debug=True)
-    results = run(DATA, debug=False)
-    print("ANSWER:", results)
+    final = run(part=1, test_run=False, debug=False)
+    print("ANSWER:", final)
