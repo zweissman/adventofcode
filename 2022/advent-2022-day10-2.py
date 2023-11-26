@@ -14,19 +14,19 @@ def run(data, debug=False):
     run_command_arg = None
     clock = 1
     next_pop = 1
-    
-    
+
+
     while True:
         if debug: print(f"CLOCK={clock} X={X} next={next_pop}")
-            
-        
+
+
         if next_pop == clock:
             if len(data) == 0:
                 break
             command = data.pop(0)
             if debug: print("\t\t--> " + command)
-        
-            
+
+
             if command == "noop":
                 run_command = None
                 pop = clock + 1
@@ -39,7 +39,7 @@ def run(data, debug=False):
                 print(f"Unknown command {command}")
         elif next_pop < clock:
             print("We missed it")
-        
+
         if X - 1 <= (clock - 1) % 40 <= X + 1:
             SCREEN += "#"
         else:
@@ -52,7 +52,7 @@ def run(data, debug=False):
 
 
         clock += 1
-        
+
         if next_pop == clock and run_command and run_command_arg:
             run_command(run_command_arg, debug)
 
@@ -62,7 +62,7 @@ def run(data, debug=False):
 
 def addx(arg, debug):
     global X
-    
+
     if debug: print(f"\t$ addx({arg})  X {X} --> {X+arg}")
     X += arg
 
@@ -73,8 +73,8 @@ def show(debug):
         start += 40
         if len(SCREEN) < start:
             break
-    
-    
+
+
 if __name__ == "__main__":
 #    results = run(DATA_TEST, debug=True)
 #    results = run(DATA_TEST2, debug=True)

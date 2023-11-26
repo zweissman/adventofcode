@@ -4,11 +4,11 @@ DATA = ["[[4,[1,[]]],[8,3,[[0,2],[5,2,6],[7,0,10,0],2,[5,7,10,2]],[[5,9],5,10,[9
 class Thing(object):
     def __init__(self, item):
         self.item = eval(item)
-        
+
     def __lt__(self, right):
         result = compare(self.item, right.item)
         return result == 1
-        
+
     def __gt__(self, right):
         result = compare(self.item, right.item)
         return result == -1
@@ -16,7 +16,7 @@ class Thing(object):
     def __eq__(self, right):
         result = compare(self.item, right.item)
         return result == 0
-        
+
     def __str__(self):
         return str(self.item)
 
@@ -40,7 +40,7 @@ def compare(left, right):
             result = compare(left[i], right[i])
             if result != 0:
                 return result
-    
+
         # same so far:
         if len(left) < len(right):
             return 1
@@ -56,21 +56,21 @@ def compare(left, right):
         else:
             raise Exception(f"Unknwown type combo", type(left), type(right))
     return compare(left, right)
-    
-                
+
+
 def run(data, debug=False):
     items = []
     data.append("[[2]]")
     data.append("[[6]]")
-    
+
     while len(data) > 0:
         item = data.pop(0)
         if item == "":
             continue
         items.append(Thing(item))
-        
+
     items = sorted(items)
-    
+
     i2 = items.index(Thing("[[2]]")) + 1
     i6 = items.index(Thing("[[6]]")) + 1
 

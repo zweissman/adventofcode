@@ -10,7 +10,7 @@ def run(data, folder_name, debug=False):
     tree = Tree()
     tree.create_node(folder_name, folder_name)
     if debug: tree.show()
-        
+
     while len(data) > 0:
         row = data.pop(0)
 #        if debug: print("-->", row)
@@ -32,7 +32,7 @@ def run(data, folder_name, debug=False):
                     sub_folder_name = f"{folder_name}/{sub_folder_name}"
                 else:
                     sub_folder_name = f"/{sub_folder_name}"
-                    
+
                 sub_tree = run(data, sub_folder_name, debug=debug)
                 print("****SUB*****")
                 sub_tree.show()
@@ -60,8 +60,8 @@ def run(data, folder_name, debug=False):
                 data.insert(0, row)
             else:
                 raise Exception(f"Unknown command {command}")
-                
-                
+
+
     return tree
 
 def get_folder_sizes(tree):
@@ -83,7 +83,7 @@ if __name__ == "__main__":
     tree = run(DATA, "/", debug=False)
 
     tree.show()
-    
+
     results = 0
     for node in tree.all_nodes_itr():
         if node.is_root():

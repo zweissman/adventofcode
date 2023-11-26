@@ -6,14 +6,14 @@ DATA = ["Monkey 0:","  Starting items: 74, 73, 57, 77, 74","  Operation: new = o
 def run(data, debug=False):
     results = 0
     monkeys = {}
-    
+
     while len(data) > 0:
         monkey_id = int(data.pop(0).replace("Monkey ", ""). strip(":"))
         items = data.pop(0).replace("  Starting items: ", "")
         items = items.split(", ")
         operation = data.pop(0).replace("  Operation: new = old ", "")
         operation, value = operation.split(" ")
-        if value != "old": 
+        if value != "old":
             value = int(value)
         else:
             value = None
@@ -28,7 +28,7 @@ def run(data, debug=False):
 
 
     if debug: print(monkeys)
-    
+
     for round in range(20):
         if debug: print(f"Round {round + 1}")
         for monkey_id, monkey in monkeys.items():
@@ -53,11 +53,11 @@ def run(data, debug=False):
                 else:
                     throw_to = monkey["f"]
                 monkeys[throw_to]["items"].append(worry)
-        
-    counts = []        
+
+    counts = []
     for _, monkey in monkeys.items():
         counts.append(monkey["count"])
-        
+
     counts.sort(reverse=True)
     if debug: print (counts)
     results = counts[0] * counts[1]

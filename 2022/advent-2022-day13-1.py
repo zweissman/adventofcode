@@ -4,14 +4,14 @@ DATA = ["[[4,[1,[]]],[8,3,[[0,2],[5,2,6],[7,0,10,0],2,[5,7,10,2]],[[5,9],5,10,[9
 def run(data, debug=False):
     right_orders = []
     id = 0
-    
+
     while len(data) > 0:
         id += 1
         left = eval(data.pop(0))
         right = eval(data.pop(0))
         if len(data) > 0:
             data.pop(0)
-        
+
         if debug: print(id, left, right)
 
         result = 0
@@ -24,7 +24,7 @@ def run(data, debug=False):
                 break
             if result == -1:
                 break
-                
+
         if result == 0 and len(left) < len(right):
             right_orders.append(id)
 
@@ -47,7 +47,7 @@ def compare(left, right):
             result = compare(left[i], right[i])
             if result != 0:
                 return result
-    
+
         # same so far:
         if len(left) < len(right):
             return 1
@@ -63,9 +63,9 @@ def compare(left, right):
         else:
             raise Exception(f"Unknwown type combo", type(left), type(right))
     return compare(left, right)
-    
-    
-    
+
+
+
 if __name__ == "__main__":
 #    results = run(DATA_TEST, debug=True)
     results = run(DATA, debug=False)

@@ -4,7 +4,7 @@ DATA = ["zcncrcnrrlccmhchssgqsqrsstfffnqfnfsswgwjjcmcnnvjvwjvwvfvnvwwhvvwmwhmwww
 def run(data, debug=False):
     results = 0
     x = 14
-    
+
     for row in data:
         if debug: print(row)
         for index in range(len(row) + x - 1):

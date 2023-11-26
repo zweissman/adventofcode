@@ -44,10 +44,10 @@ def run(data, debug=False):
     destination = ()
     starts = []
     grid = []
-    
+
     for row in data:
         grid.append(list(row))
-    
+
     for y in range(len(grid)):
         for x in range(len(grid[y])):
             if grid[y][x] == "S":
@@ -61,14 +61,14 @@ def run(data, debug=False):
 
     shortest = 999999
     for current in starts:
-        
+
         print("Checking Start", current, "End", destination)
 
         this_grid = ZGrid(matrix=grid)
-        
+
         start = this_grid.node(current[0], current[1])
         end = this_grid.node(destination[0], destination[1])
-        
+
         finder = AStarFinder(diagonal_movement=DiagonalMovement.never)
         path, runs = finder.find_path(start, end, this_grid)
 

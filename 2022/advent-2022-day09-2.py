@@ -12,11 +12,11 @@ def run(data, x, y, debug=False):
     GRID = [[0] * DIM for i in range(DIM)]
     for knot in range(KNOT_COUNT):
         KNOTS.append((x,y))
-    
+
     if debug: show()
-                
+
     for row in data:
-#        if debug: print(row) 
+#        if debug: print(row)
         move(row, debug)
 
     results = score()
@@ -32,11 +32,11 @@ def move(command, debug):
         for i in range(count):
             if debug: print(f"\nMove {dir} {i} of {count}")
             stop = False
-                
+
             for k in range(KNOT_COUNT - 1):
                 H = KNOTS[k]
                 T = KNOTS[k+1]
-                
+
                 if k == 0:
                     # Only for the first head
                     if dir == "R":
@@ -62,7 +62,7 @@ def move(command, debug):
                         T = (T[0]+1, T[1])
                     else:
                         T = (T[0]-1, T[1])
-                       
+
                 elif hor != 0 and abs(hor) > 1:
                     # print("T move HORIZON")
                     if hor > 0:
@@ -77,7 +77,7 @@ def move(command, debug):
                         T = (T[0], T[1]-1)
                 else:
                     stop = True
-                
+
 #                LAST_HEAD = H
                 KNOTS[k] = H
                 KNOTS[k+1] = T
@@ -93,12 +93,12 @@ def move(command, debug):
             if debug: show()
             if debug: print(score())
             a=1
-                
+
     except IndexError as e:
         raise Exception(f"Ran off the board, increase DIM: KNOTS:{KNOTS}")
-            
 
-    
+
+
 def show():
     global KNOT_COUNT
     for x in range(DIM):
@@ -118,13 +118,13 @@ def show():
                     line += "."
 
         print(line)
-        
+
 def score():
     results = 0
     for x in GRID:
         results += sum(x)
     return results
-    
+
 
 
 

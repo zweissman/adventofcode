@@ -43,10 +43,10 @@ def run(data, debug=False):
     current = ()
     destination = ()
     grid = []
-    
+
     for row in data:
         grid.append(list(row))
-    
+
     for y in range(len(grid)):
         for x in range(len(grid[y])):
             if grid[y][x] == "S":
@@ -56,14 +56,14 @@ def run(data, debug=False):
                 grid[y][x] = "z"
                 destination = (x, y)
             grid[y][x] = ord(grid[y][x]) - ord('a') + 1
-            
+
     print("Checking Start", current, "End", destination)
 
     grid = ZGrid(matrix=grid)
-    
+
     start = grid.node(current[0], current[1])
     end = grid.node(destination[0], destination[1])
-    
+
     finder = AStarFinder(diagonal_movement=DiagonalMovement.never)
     path, runs = finder.find_path(start, end, grid)
 

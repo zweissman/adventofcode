@@ -4,7 +4,7 @@ DATA = ["A Y","C Y","C X","A Y","C X","C Y","B Z","A Y","A Y","C Z","A Y","A Y",
 def run(data, debug=False):
     results = 0
     score = 0
-    
+
     for row in data:
         them = row[0]
         me = row[2]
@@ -28,8 +28,8 @@ def run(data, debug=False):
             elif them == "B":
                 score += 6
         if debug: print(score)
-        results += score    
-    
+        results += score
+
     return results
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@ def run(data, folder_name, debug=False):
     results = 0
     tree = {}
     hier = collections.OrderedDict()
-    
+
     while len(data) > 0:
         row = data.pop(0)
 #        if debug: print("-->", row)
@@ -53,24 +53,24 @@ def run(data, folder_name, debug=False):
 
             else:
                 raise Exception(f"Unknown command {command}")
-                
+
     if debug: print("\n\nTREE", tree)
     if debug: print("\n\nHIER", hier)
     hier = collections.OrderedDict(reversed(list(hier.items())))
-    
+
     # resolve hierarchy
     for folder, items in hier.items():
         for item in items:
             tree[folder].extend(tree[item])
-        
+
     if debug: print("\n\nTREE", tree)
-    
+
     for folder, contents in tree.items():
         folder_size = sum([int(file) for file in contents])
         if folder_size <= 100000:
             results += folder_size
-    
-    
+
+
 
     return results
 

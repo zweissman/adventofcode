@@ -44,7 +44,7 @@ def my_lru_cache(*opts, **kwopts):
             @lru_cache(*opts, **kwopts)
             def cached_func(args_hash):
                 return func(*args, **kwargs)
-            
+
             return cached_func(__hash)
         return wrapper
     return decorator
@@ -57,10 +57,10 @@ def run(data, debug=False):
     results = 0
     current = ()
     destination = ()
-    
+
     for row in data:
         BOARD.append(list(row))
-        
+
     for y in range(len(BOARD)):
         for x in range(len(BOARD[y])):
             if BOARD[y][x] == "S":
@@ -74,9 +74,9 @@ def run(data, debug=False):
     if DEBUG:
         for row in BOARD:
             print(row)
-    
+
     visited = []
-    
+
     results = visit(current, visited, destination, "a")
 
     return results
@@ -84,9 +84,9 @@ def run(data, debug=False):
 @my_lru_cache(maxsize=None)
 def visit(current, visited, destination, last_spot):
     global DEBUG, BOARD, MAX_STEPS, MAX_HEIGHT
-    
+
     visited.append(current)
-    
+
     current_x, current_y = current
     spot = BOARD[current_y][current_x]
     if spot > MAX_HEIGHT:
@@ -99,7 +99,7 @@ def visit(current, visited, destination, last_spot):
                 return MAX_STEPS
             if in_a_pit(current):
                 return MAX_STEPS
-            
+
 
     MAX_HEIGHT = max(MAX_HEIGHT, spot)
 
@@ -113,7 +113,7 @@ def visit(current, visited, destination, last_spot):
         return MAX_STEPS
 
     queue = []
-    
+
     if DEBUG: print("SPOT", spot, current)
 
     next = (current_x+1, current_y)
@@ -123,7 +123,7 @@ def visit(current, visited, destination, last_spot):
         if ord(spot) + 1 >= ord(BOARD[next_y][next_x]):
 #            if DEBUG: print("TRUE")
             queue.append(next)
-            
+
     next = (current_x, current_y+1)
     next_x, next_y = next
     if next_y < len(BOARD) and next not in visited and next not in queue:
@@ -131,7 +131,7 @@ def visit(current, visited, destination, last_spot):
         if ord(spot) + 1 >= ord(BOARD[next_y][next_x]):
  #           if DEBUG: print("TRUE")
             queue.append(next)
-            
+
     next = (current_x, current_y-1)
     next_x, next_y = next
     if next_y >= 0 and next not in visited and next not in queue:
@@ -139,7 +139,7 @@ def visit(current, visited, destination, last_spot):
         if ord(spot) + 1 >= ord(BOARD[next_y][next_x]):
  #           if DEBUG: print("TRUE")
             queue.append(next)
-            
+
     next = (current_x-1, current_y)
     next_x, next_y = next
     if next_x >= 0 and next not in visited and next not in queue:
@@ -147,7 +147,7 @@ def visit(current, visited, destination, last_spot):
         if ord(spot) + 1 >= ord(BOARD[next_y][next_x]):
 #            if DEBUG: print("TRUE")
             queue.append(next)
-            
+
 
     # if DEBUG: print("q", queue)
     steps = 999999
@@ -160,7 +160,7 @@ def visit(current, visited, destination, last_spot):
 @my_lru_cache(maxsize=None)
 def in_a_pit(current):
     global BOARD, DEBUG
-    
+
     spots = []
     visited = []
     queue = [current]
@@ -181,7 +181,7 @@ def in_a_pit(current):
                 queue.append(next)
             elif BOARD[next_y][next_x] != "c":
                 return False
-                
+
         next = (current_x, current_y+1)
         next_x, next_y = next
         if next_y < len(BOARD) and next not in spots and next not in visited and next not in queue:
@@ -190,7 +190,7 @@ def in_a_pit(current):
                 queue.append(next)
             elif BOARD[next_y][next_x] != "c":
                 return False
-                
+
         next = (current_x, current_y-1)
         next_x, next_y = next
         if next_y >= 0 and next not in spots and next not in visited and next not in queue:
@@ -199,7 +199,7 @@ def in_a_pit(current):
                 queue.append(next)
             elif BOARD[next_y][next_x] != "c":
                 return False
-                
+
         next = (current_x-1, current_y)
         next_x, next_y = next
         if next_x >= 0 and next not in spots and next not in visited and next not in queue:
@@ -208,7 +208,7 @@ def in_a_pit(current):
                 queue.append(next)
             elif BOARD[next_y][next_x] != "c":
                 return False
-                
+
     print("Found PITS", sorted(spots, key=lambda x: x[1]))
     PITS.extend(spots)
     return True

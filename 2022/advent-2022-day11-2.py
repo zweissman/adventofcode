@@ -7,7 +7,7 @@ def run(data, debug=False):
     results = 0
     monkeys = {}
     lcm = 1
-    
+
     while len(data) > 0:
         monkey_id = int(data.pop(0).replace("Monkey ", ""). strip(":"))
         items = data.pop(0).replace("  Starting items: ", "")
@@ -15,7 +15,7 @@ def run(data, debug=False):
         items = [int(x) for x in items]
         operation = data.pop(0).replace("  Operation: new = old ", "")
         operation, value = operation.split(" ")
-        if value != "old": 
+        if value != "old":
             value = int(value)
         else:
             value = None
@@ -31,14 +31,14 @@ def run(data, debug=False):
 
 
     if debug: print(monkeys)
-    
+
     for round in range(10000):
         # if round % 20 == 0: print(f"Round {round + 1}")
-                
-        if round % 1000 == 0: 
+
+        if round % 1000 == 0:
             print(f"Round {round + 1}")
             print([monkey["count"] for _, monkey in monkeys.items()])
-            
+
         for monkey_id, monkey in monkeys.items():
             items = monkey["items"]
             operation = monkey["operation"]
@@ -60,14 +60,14 @@ def run(data, debug=False):
                     throw_to = monkey["t"]
                 else:
                     throw_to = monkey["f"]
-                    
+
                 worry %= lcm
                 monkeys[throw_to]["items"].append(worry)
-        
-    counts = []        
+
+    counts = []
     for _, monkey in monkeys.items():
         counts.append(monkey["count"])
-        
+
     counts.sort(reverse=True)
     if debug: print (counts)
     results = counts[0] * counts[1]

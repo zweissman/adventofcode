@@ -5,7 +5,7 @@ MOVES = ["move 1 from 3 to 5","move 2 from 2 to 8","move 4 from 1 to 3","move 2 
 
 def run(stacks, moves, debug=False):
     results = ""
-    
+
     for move in moves:
         if debug: print(move)
         words = move.split()
@@ -13,9 +13,9 @@ def run(stacks, moves, debug=False):
         for _ in range(quantity):
             if debug: print(stacks)
             stacks[end].insert(0, stacks[start].pop(0))
-        
-        
-        
+
+
+
     if debug: print(stacks)
     for stack in stacks:
         if len(stack) > 0:

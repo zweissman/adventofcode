@@ -4,16 +4,16 @@ DATA = ["31321312321220031201124320312021401020255442033504511620310100521252513
 def run(data, debug=False):
     results = 0
     grid = []
-    
+
     for row in data:
         grid.append(list(row))
-        
-                   
+
+
     for row in grid:
         print (row)
 
-    results = 2 * len(grid) + 2 * len(grid[0]) - 4 
-    
+    results = 2 * len(grid) + 2 * len(grid[0]) - 4
+
     for x in range(1, len(grid) - 1):
         for y in range(1, len(grid[x]) - 1):
             if debug: print("GRID:", x, y , grid[x][y])
@@ -30,7 +30,7 @@ def is_visible(grid, x, y):
             break
     else:
         return 1
-    
+
     # Right
     for xx in range(x+1, len(grid)):
         if grid[xx][y] >= height:

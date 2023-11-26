@@ -4,16 +4,16 @@ DATA = ["fzmmmfwDWFzlQQqjCQjDGnqq","tJHJvLJVVttNsvTtTvgHHSVwCsQRQQZCZZMqQMQBnqBM
 def run(data, debug=False):
     results = 0
     common = []
-    
+
     for line in data:
         line = list(line)
         l = len(line)
         left, right = line[:int(l/2)], line[int(l/2):]
-        
+
         common.append(list(set(left) & set(right))[0])
 
     if debug: print(common)
-    
+
     for let in common:
         if let.isupper():
             results += ord(let) - ord('A') + 26 + 1
@@ -21,7 +21,7 @@ def run(data, debug=False):
             results += ord(let) - ord('a') + 1
 
         if debug: print(results)
-   
+
     return results
 
 if __name__ == "__main__":

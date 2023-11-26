@@ -9,9 +9,9 @@ def run(data, debug=False):
         start2, end2 = right.split('-')
         start1, end1 = int(start1), int(end1)
         start2, end2 = int(start2), int(end2)
-        
+
         if debug: print(start1, end1, start2, end2)
-        
+
         if set(range(start1, end1 + 1)).intersection(set(range(start2, end2 + 1))):
             if debug: print("OVERLAP")
             results += 1

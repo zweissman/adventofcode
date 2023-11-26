@@ -4,16 +4,16 @@ DATA = ["A Y","C Y","C X","A Y","C X","C Y","B Z","A Y","A Y","C Z","A Y","A Y",
 def run(data, debug=False):
     results = 0
     score = 0
-    
+
     for row in data:
         them = row[0]
         outcome = row[2]
         if debug: print(them, outcome)
-        
+
         # A X Rock
         # B Y Paper
         # C Z Sciss
-        
+
         if outcome == "X":
             # lose
             score = 0
@@ -41,7 +41,7 @@ def run(data, debug=False):
                 me = "Z"
             else:
                 me = "X"
-            
+
         if me == "X":
             score += 1
         elif me == "Y":
@@ -51,8 +51,8 @@ def run(data, debug=False):
 
         if debug: print("me", me)
         if debug: print("score", score)
-        results += score 
-    
+        results += score
+
     return results
 
 if __name__ == "__main__":

@@ -4,21 +4,21 @@ DATA = ["31321312321220031201124320312021401020255442033504511620310100521252513
 def run(data, debug=False):
     results = 0
     grid = []
-    
+
     for row in data:
         grid.append(list(row))
-        
-    if debug:               
+
+    if debug:
         for row in grid:
             print (row)
-    
+
     for x in range(1, len(grid) - 1):
         for y in range(1, len(grid[x]) - 1):
             if debug: print("GRID:", x, y , grid[x][y])
             score = calc_score(grid, x, y)
             if debug: print("SCORE:", score)
             results = max(results, score)
-            
+
 
     return results
 
@@ -33,7 +33,7 @@ def calc_score(grid, x, y):
         else:
             score_up += 1
             break
-    
+
     # Down
     score_down = 0
     for xx in range(x+1, len(grid)):
@@ -73,7 +73,7 @@ def is_visible(grid, x, y):
             break
     else:
         return 1
-    
+
     # Right
     for xx in range(x+1, len(grid)):
         if grid[xx][y] >= height:

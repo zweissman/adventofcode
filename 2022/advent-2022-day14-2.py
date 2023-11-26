@@ -16,7 +16,7 @@ def run(data, debug=False):
             x, y = point.split(',')
             x = int(x)
             y = int(y)
-            
+
             left = min(left, x)
             right = max(right, x)
             depth = max(depth, y)
@@ -25,28 +25,28 @@ def run(data, debug=False):
     # Adjust for "infinite floor"
     left = left - depth
     right = right + depth
-    
+
     grid = [['.'] * (right-left + 1) for i in range(depth + 1 + 2)]
     sand_start = (sand_start[0] - left, sand_start[1])
     grid[sand_start[1]][sand_start[0]] = '+'
-    
+
     # init floor
     for x in range(len(grid[0])):
         grid[len(grid)-1][x] = "@"
 
     if debug:
         show(grid)
-    
+
     for row in data:
         points = row.split(" -> ")
         for i in range(len(points) - 1):
             x1, y1 = points[i].split(',')
             x2, y2 = points[i+1].split(',')
             x1 = int(x1) - left
-            y1 = int(y1) 
+            y1 = int(y1)
             x2 = int(x2) - left
-            y2 = int(y2) 
-            
+            y2 = int(y2)
+
             if abs(x1 - x2) == 0:
                 # vertical
                 for y in range(min(y1, y2), max(y1, y2) + 1):
@@ -62,7 +62,7 @@ def run(data, debug=False):
     while drop_sand(sand_start[0], sand_start[1], grid, debug):
         sand_count += 1
     return sand_count
-    
+
     return results
 
 def drop_sand(x, y, grid, debug):
@@ -85,7 +85,7 @@ def drop_sand(x, y, grid, debug):
             return True
     except IndexError as e:
         return False
-        
+
 def show(grid):
 
     print()

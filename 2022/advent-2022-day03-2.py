@@ -3,12 +3,12 @@ DATA = ["fzmmmfwDWFzlQQqjCQjDGnqq","tJHJvLJVVttNsvTtTvgHHSVwCsQRQQZCZZMqQMQBnqBM
 
 def run(data, debug=False):
     common = []
-    
+
     for index in range(0, len(data), 3):
-        
+
         common.append(list(
-            set(data[index]) & 
-            set(data[index+1]) & 
+            set(data[index]) &
+            set(data[index+1]) &
             set(data[index+2])
             )[0])
 

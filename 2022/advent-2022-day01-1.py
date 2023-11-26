@@ -4,14 +4,14 @@ DATA = [18814,0,1927,12782,8734,10904,9548,1493,0,4576,4235,2617,1012,2088,1325,
 def run(data, debug=False):
     max_total = 0
     total = 0
-    
+
     for row in data:
         if row == 0 or row == "":
             max_total = max(total, max_total)
             total = 0
         else:
             total += int(row)
-        
+
     max_total = max(total, max_total)
 
     return max_total

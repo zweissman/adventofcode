@@ -16,7 +16,7 @@ def run(data, debug=False):
             x, y = point.split(',')
             x = int(x)
             y = int(y)
-            
+
             left = min(left, x)
             right = max(right, x)
             depth = max(depth, y)
@@ -28,17 +28,17 @@ def run(data, debug=False):
 
     if debug:
         show(grid)
-    
+
     for row in data:
         points = row.split(" -> ")
         for i in range(len(points) - 1):
             x1, y1 = points[i].split(',')
             x2, y2 = points[i+1].split(',')
             x1 = int(x1) - left
-            y1 = int(y1) 
+            y1 = int(y1)
             x2 = int(x2) - left
-            y2 = int(y2) 
-            
+            y2 = int(y2)
+
             if abs(x1 - x2) == 0:
                 # vertical
                 for y in range(min(y1, y2), max(y1, y2) + 1):
@@ -54,14 +54,14 @@ def run(data, debug=False):
     while drop_sand(sand_start[0], sand_start[1], grid, debug):
         sand_count += 1
     return sand_count - 1
-    
+
     return results
 
 def drop_sand(x, y, grid, debug):
     try:
         while grid[y+1][x] == '.':
             y += 1
-            
+
         # check diagonal left
         if grid[y+1][x-1] == ".":
             return drop_sand(x-1, y, grid, debug)
@@ -75,7 +75,7 @@ def drop_sand(x, y, grid, debug):
             return True
     except IndexError as e:
         return False
-        
+
 def show(grid):
     print()
     for y in range(len(grid)):

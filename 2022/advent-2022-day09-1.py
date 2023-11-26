@@ -12,11 +12,11 @@ def run(data, x, y, debug=False):
     GRID = [ [0]*DIM for i in range(DIM)]
     H = (x, y)
     T = (x, y)
-    
+
     if debug: show()
-                
+
     for row in data:
-#        if debug: print(row) 
+#        if debug: print(row)
         move(row, debug)
 
     results = score()
@@ -24,7 +24,7 @@ def run(data, x, y, debug=False):
 
 def move(command, debug):
     global H, T, DIM
-    
+
     dir, count = command.split(" ")
     count = int(count)
     try:
@@ -52,7 +52,7 @@ def move(command, debug):
                     T = (H[0], H[1]+1)
                 elif dir == "D":
                     T = (H[0], H[1]-1)
-                
+
             elif hor != 0 and abs(hor) > 1:
                 # move horizontally
                # print("T move HORIZON")
@@ -67,18 +67,18 @@ def move(command, debug):
                     T = (T[0], T[1]+1)
                 else:
                     T = (T[0], T[1]-1)
-            
+
             GRID[T[0]][T[1]] = 1
 
             if debug: show()
             if debug: print(score())
             a=1
-            
+
     except IndexError as e:
         raise Exception(f"Ran off the board, increase DIM: H:{H} T:{T}")
-            
 
-    
+
+
 def show():
     for x in range(DIM):
         line = ""
@@ -93,13 +93,13 @@ def show():
             else:
                 line += str(GRID[y][x])
         print(line)
-        
+
 def score():
     results = 0
     for x in GRID:
         results += sum(x)
     return results
-    
+
 
 
 

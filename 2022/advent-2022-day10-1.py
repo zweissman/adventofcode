@@ -11,10 +11,10 @@ def run(data, debug=False):
     clock = 1
     next_pop = 1
     X = 1
-    
+
     while True:
         if debug: print(f"CLOCK: {clock} X {X} next {next_pop}")
-            
+
         if next_pop == clock:
             if run_command and run_command_arg:
                 run_command(run_command_arg, debug)
@@ -22,8 +22,8 @@ def run(data, debug=False):
                 break
             command = data.pop(0)
             if debug: print("\t\t--> " + command)
-        
-            
+
+
             if command == "noop":
                 run_command = None
                 next_pop = clock + 1
@@ -36,10 +36,10 @@ def run(data, debug=False):
                 print(f"Unknown command {command}")
         elif next_pop < clock:
             print("We missed it")
-        
+
         if (clock - 20) % 40 == 0:
             add_result = clock * X
-            results += add_result 
+            results += add_result
             if debug: print(f"== RESULTS: {results - add_result} + {add_result} = {results}")
             a=1
 
@@ -49,7 +49,7 @@ def run(data, debug=False):
 
 def addx(arg, debug):
     global X
-    
+
     if debug: print(f"\t$ addx({arg})  X {X} --> {X+arg}")
     X += arg
 
