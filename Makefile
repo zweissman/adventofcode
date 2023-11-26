@@ -6,3 +6,7 @@ pc-enable:
 
 pc-disable:
 	pre-commit uninstall
+
+pc-update:
+	pre-commit autoupdate
+
