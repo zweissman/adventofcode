@@ -11,7 +11,7 @@ def run(data, steps):
     for q in data:
         pair, letter = q.split(" -> ")
         rules[pair] = letter
-        
+
     pairs = {}
     for index in range(len(poly) - 1):
         pairs[poly[index] + poly[index + 1]] = pairs.get(poly[index] + poly[index + 1], 0) + 1
@@ -23,11 +23,11 @@ def run(data, steps):
         for pair in pairs:
             assert len(pair) == 2
             a, b = pair
-            
+
             letter = rules[pair]
             new_pairs[a + letter] = new_pairs.get(a + letter, 0) + pairs[pair]
             new_pairs[letter + b] = new_pairs.get(letter + b, 0) + pairs[pair]
-            
+
         pairs = new_pairs
         # print(f"-" * 50)
         # print(pairs)
@@ -38,21 +38,21 @@ def run(data, steps):
     for pair in pairs:
         assert len(pair) == 2
         a, b = pair
-        
+
         left_count[a] = left_count.get(a, 0) + pairs[pair]
         right_count[b] = right_count.get(b, 0) + pairs[pair]
 
     max_count = {}
     for letter in set(list(left_count) + list(right_count)):
         max_count[letter] = max(left_count.get(letter, 0), right_count.get(letter, 0))
-        
+
     # print(max_count)
 
     low = max_count[min(max_count, key=max_count.get)]
     high = max_count[max(max_count, key=max_count.get)]
 
     results = high - low
-        
+
     return results
 
 if __name__ == "__main__":

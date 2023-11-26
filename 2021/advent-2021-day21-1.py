@@ -42,12 +42,12 @@ def roll_die(count=3):
 
         yield results
         results = 0
-    
+
 if __name__ == "__main__":
     data = DATA
     p1 = data[0]
     p1 = int(p1.split(': ')[1])
     p2 = data[1]
     p2 = int(p2.split(': ')[1])
-    results = run(p1, p2)    
+    results = run(p1, p2)
     print (results)

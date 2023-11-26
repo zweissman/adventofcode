@@ -72,14 +72,14 @@ def run(data, counter=1):
 
     board = []
     mark = 'a'
-    
+
     while True:
         data_split = data.split('+', 1)
         if len(data_split) == 2:
             data = '[' + data_split[0] + ',' + data_split[1] + ']'
-        else: 
+        else:
             break
-    
+
     digit = ""
     for x in data:
         if x.isdigit():
@@ -104,7 +104,7 @@ def run(data, counter=1):
 
 def parse_board(board):
     if DEBUG: print(format_board(board))
-    
+
 
     for index in range(len(board)):
         if isinstance(board[index], int) and index + 1 < len(board) and isinstance(board[index+1], int):
@@ -132,15 +132,15 @@ def parse_board(board):
             nest_clean = nest.replace('[', '').replace(']', '')
             if '[' in nest:
                 nest_clean = chr(ord(nest_clean) + 1)
-            
-            
+
+
             board[index] = '[' + nest_clean
             board.insert(index+1, int(point / 2))
             board.insert(index+2, point-int(point/2))
             board.insert(index+3, ']' + nest_clean)
-            
+
             return parse_board(board)
-                
+
 
     return board
 
@@ -148,13 +148,13 @@ def find_nest(start, end, step, board):
     direction = "right"
     if step < 0:
         direction = "left"
-    
+
     for index in range(start, end + step, step):
         if isinstance(board[index], str):
             return board[index]
-        
+
     return None
-    
+
 def add_number(number, start, end, step, board):
     direction = "right"
     if step < 0:
@@ -169,12 +169,12 @@ def add_number(number, start, end, step, board):
 
     if DEBUG: print(f"Found no number to add {number} to {direction}")
     return None
-        
-    
+
+
 def get_next_number(data):
     found_digit = False
     digit = ""
-    
+
     for index, x in enumerate(list(data)):
         if x == ',':
             continue
@@ -205,7 +205,7 @@ def calc_mag(answer):
             sub_index = answer.find(sub)
             answer = answer[:sub_index] + str(int(a)*3 + int(b)*2) + answer[sub_index+len(sub):]
             continue
-            
+
         match = re.search('\[(\d+)\]', answer)
         if match:
             a = match.group(1)
@@ -213,18 +213,18 @@ def calc_mag(answer):
             sub_index = answer.find(sub)
             answer = answer[:sub_index] + a + answer[sub_index+len(sub):]
             continue
-            
+
         if not match:
             break
 
     return(answer)
 
-    
+
 if __name__ == "__main__":
 #    print(calc_mag('[[[[6,6],[7,6]],[[7,7],[7,0]]],[[[7,7],[7,7]],[[7,8],[9,9]]]]'))
     #print(calc_mag('[717,[176,[129]]]'))
     all_mags = {}
-    
+
     data = DATA_TEST_MAGS
     for x in range(len(data)):
         for y in range(len(data)):
@@ -235,12 +235,12 @@ if __name__ == "__main__":
                 mag = calc_mag(answer)
                 all_mags[f"{x}:{y}"] = int(mag)
                 print (x,y,mag)
-                
-        
+
+
 #    all_mags = {k: v for k, v in sorted(all_mags.items(), key=lambda item: item.get[1])}
     all_mags = sorted(all_mags.items(), key=lambda x: x[1])
     print(all_mags)
-    
+
     # 11636 high
     # 10782 high
     # 10329 high

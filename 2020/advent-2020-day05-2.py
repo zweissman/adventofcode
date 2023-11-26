@@ -3,12 +3,12 @@ DATA = ['FFBFFBBLRL','FBFBBFBLRR','FBFFBBBRLL','FFBBFBFRRR','BFBBBBFLRR','BBFBBB
 def get_seat_number(seat):
     row_code = seat[:7]
     col_code = seat[-3:]
-    
+
     row_value = get_value(row_code)
     col_value = get_value(col_code)
-    
+
     return row_value * (len(row_code) + 1) + col_value
-    
+
 
 def get_value(code):
     value = 0

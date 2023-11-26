@@ -5,3 +5,11 @@ repos:
     hooks:
       - id: prettier
         exclude: "(.pre-commit-config.yaml|Pipfile.lock)"
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-json
+      - id: check-xml
+      - id: trailing-whitespace
+

@@ -10,7 +10,7 @@ def run(data):
         board.append(list(row))
 
     board = np.array(board)
-    
+
     move_counter = 0
     while True:
         print(move_counter)
@@ -18,14 +18,14 @@ def run(data):
         move_counter += 1
         if not any_move:
             return move_counter
-    
+
     return
 
 def move(board):
     if DEBUG:
         for row in board:
             print("".join(row))
-    
+
     any_move = False
     new_board = np.full_like(board, '.')
     for x, row in enumerate(board):
@@ -47,7 +47,7 @@ def move(board):
                 any_move = True
 
     board = new_board
-    
+
     new_board = np.full_like(board, '.')
     for x, row in enumerate(board):
         for y, cell in enumerate(row):

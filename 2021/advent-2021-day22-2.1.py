@@ -11,7 +11,7 @@ OFFSET = 100000
 def run(board, data):
     results = 0
     count = 0
-    
+
     for row in data:
         set, coords = row.split(' ')
         xr, yr, zr = coords.split(',')
@@ -21,7 +21,7 @@ def run(board, data):
         print (set, xr, yr, zr)
         if set == "on":
             set = 1
-        else: 
+        else:
             set = 0
 
         x1 = max(int(x1), OFFSET * -1) + OFFSET
@@ -30,7 +30,7 @@ def run(board, data):
         x2 = min(int(x2), OFFSET) + OFFSET
         y2 = min(int(y2), OFFSET) + OFFSET
         z2 = min(int(z2), OFFSET) + OFFSET
-        
+
         for x in range(int(x1), int(x2)+1):
             for y in range(int(y1), int(y2)+1):
                 for z in range(int(z1), int(z2)+1):
@@ -45,9 +45,9 @@ def run(board, data):
 
 if __name__ == "__main__":
     data = DATA_TEST
-    
 
-   
+
+
     ranges = []
 
     for line in data:

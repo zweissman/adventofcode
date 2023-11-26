@@ -9,7 +9,7 @@ def validate_list(data):
             valid_count += 1
         else:
             print("INVALID")
-        
+
     return valid_count
 
 def validate_password(range, pattern, value):

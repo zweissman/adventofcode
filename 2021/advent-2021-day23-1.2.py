@@ -110,7 +110,7 @@ def f(state):
   # given a state, what is the cost to get to "done"?
   show(state)
   # move top -> L or R
-  # move L or R -> 
+  # move L or R ->
   # always move to destination ASAP
   bot, top = state
   key = (tuple((k, tuple(v)) for k,v in bot.items()), tuple(top))

@@ -17,14 +17,14 @@ def run(data, steps):
                 board[row][col] += 1
 
         step_flash = check_board(board)
-        
+
         results += step_flash
 
         for row in board:
             print(row)
-            
+
     return results
-        
+
 def check_board(board):
     step_flash = 0
     for row in range(len(board)):
@@ -57,7 +57,7 @@ def check_board(board):
                 if row < len(board) - 1 and col < len(board[0]) - 1:
                     if board[row+1][col+1] != 0:
                         board[row+1][col+1] += 1
- 
+
     if step_flash > 0:
         return step_flash + check_board(board)
     else:

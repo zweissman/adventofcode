@@ -12,7 +12,7 @@ def clean_data(data):
         else:
             clean.append(record)
             record = ''
-            
+
     if record != '':
         clean.append(record)
 
@@ -24,7 +24,7 @@ def get_unique_count(data):
         unique_row_count = len(set(list(row)))
         print(f"{unique_row_count}: {row}")
         unique_count += unique_row_count
-        
+
     return unique_count
 
 

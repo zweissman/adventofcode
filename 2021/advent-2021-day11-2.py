@@ -15,24 +15,24 @@ def run(data):
         for row in range(len(board)):
             for col in range(len(board[row])):
                 board[row][col] += 1
-                
-                
+
+
         step_flash = check_board(board)
-        
+
         results += step_flash
 
         # for row in board:
         #     print(row)
-        
-            
+
+
         all_sum = sum(sum(board, []))
         if all_sum == 0:
             return step
         print(f"{step}: {all_sum}")
         step += 1
-            
+
     return
-        
+
 def check_board(board):
     step_flash = 0
     for row in range(len(board)):
@@ -65,7 +65,7 @@ def check_board(board):
                 if row < len(board) - 1 and col < len(board[0]) - 1:
                     if board[row+1][col+1] != 0:
                         board[row+1][col+1] += 1
- 
+
     if step_flash > 0:
         return step_flash + check_board(board)
     else:

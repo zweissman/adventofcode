@@ -9,7 +9,7 @@ def run(data):
     max_val = max(data)
     min_fuel_position = -1
     min_fuel_value = 999999999999
-    
+
     data = Counter(data)
     print(data)
 
@@ -37,5 +37,5 @@ def run(data):
 if __name__ == "__main__":
     results = run(DATA)
     print (results)
-    
-    
+
+

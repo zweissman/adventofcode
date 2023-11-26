@@ -53,14 +53,14 @@ def run(data, folds):
 
 def setup(data, folds):
     first_x, first_y = 0, 0
-    
+
     for fold in folds:
         if first_x != 0 and first_y != 0:
             break
         fold = fold.replace('fold along ', '')
         dim, value = fold.split('=')
         value = int(value)
-        
+
         if dim == 'x' and first_x == 0:
             first_x = value
         if dim == 'y' and first_y == 0:

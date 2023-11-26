@@ -14,7 +14,7 @@ OPTIONAL = ['cid']
 def validate(data):
     valid_count = 0
     required_count = 0
-    
+
     for row in data:
         items = row.split()
         for item in items:
@@ -62,13 +62,13 @@ def validate(data):
             valid_count += 1
         else:
             print(f"INVALID: {required_count}")
-            
+
         required_count = 0
 
     return valid_count
-                
-            
-            
+
+
+
     return valid_count
 
 def cleanup_data(data):

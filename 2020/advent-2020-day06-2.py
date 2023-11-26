@@ -13,7 +13,7 @@ def clean_data(data):
         else:
             clean.append(record)
             record = ''
-            
+
     if record != '':
         clean.append(record)
 
@@ -25,27 +25,27 @@ def get_unique_count(data):
         unique_row_count = len(set(list(row)))
         print(f"{unique_row_count}: {row}")
         unique_count += unique_row_count
-        
+
     return unique_count
 
 def get_group_count(data):
     group_count = 0
-    
+
     for group_data in data:
         group = group_data.split()
         if len(group) == 1:
             group_count += len(group[0])
             continue
-        
+
         min_index = -1
         min_length = 999999
-        
+
         for index in range(len(group)):
             if len(group[index]) < min_length:
                 min_index = index
                 min_length = len(group[index])
         #print(f"{min_index}:{min_length}\n\t{group}")
-        
+
 #        break_out = False
         for letter in group[min_index]:
             for row in group:
@@ -55,7 +55,7 @@ def get_group_count(data):
                     break
             else:
                 group_count += 1
-                
+
             # if break_out:
             #     break
         print (f"{group_count}: {group_data}")

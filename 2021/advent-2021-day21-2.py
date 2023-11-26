@@ -7,18 +7,18 @@ DATA = ['Player 1 starting position: 2','Player 2 starting position: 5']
 def play_turn(p1, p2, p1_score, p2_score):
     p1_wins_total, p2_wins_total = 0, 0
     rolls = get_dice_combos()
-    
+
     for roll in rolls:
         score = get_score(p1 + roll)
-        
+
         if p1_score + score >= 21:
             p1_wins_total += 1
             continue
-        
+
         p2_wins, p1_wins = play_turn(p2, p1 + roll, p2_score, p1_score + score)
         p1_wins_total += p1_wins
         p2_wins_total += p2_wins
-        
+
     return p1_wins_total, p2_wins_total
 
 def get_dice_combos(sides=3):
@@ -45,5 +45,5 @@ if __name__ == "__main__":
     p1_wins_total, p2_wins_total = play_turn(p1, p2, 0, 0)
     results = max(p1_wins_total, p2_wins_total)
 
-#    results = run(universes)    
+#    results = run(universes)
     print (results)

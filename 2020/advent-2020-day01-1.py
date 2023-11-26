@@ -17,9 +17,9 @@ def find_sum(target_total, data):
             elif total > TARGET_VALUE:
                 # We are too far, get a new index
                 break
-                
+
     return (0, 0)
-    
+
 
 a, b = find_sum(TARGET_VALUE, DATA)
 print (a, b)

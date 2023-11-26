@@ -4,10 +4,10 @@ DATA = [1,1,3,5,1,1,1,4,1,5,1,1,1,1,1,1,1,3,1,1,1,1,2,5,1,1,1,1,1,2,1,4,1,4,1,1,
 def run(data, number_of_days):
     results = 0
     tank = {}
-    
+
     for fish in data:
         tank[fish] = tank.get(fish, 0) + 1
-    
+
     for day in range(1, number_of_days + 1):
         print(f"Running day {day}")
         new_tank = {}
@@ -21,15 +21,15 @@ def run(data, number_of_days):
 
         tank = new_tank
 
-    results = 0        
+    results = 0
     for key, value in sorted(tank.items()):
         if value != 0:
 #                print(f"{key}: {value}")
             results += value
-    
+
     return results
 
-        
+
 if __name__ == "__main__":
     results = run(DATA, 256)
     print (results)

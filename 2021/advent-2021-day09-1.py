@@ -12,8 +12,8 @@ def run(data):
         board.append([int(x) for x in row])
 
     for row in board:
-        print(row)     
-        
+        print(row)
+
     for row in range(len(board)):
         for col in range(len(board[0])):
             me = board[row][col]
@@ -30,12 +30,12 @@ def run(data):
             if col == len(board[0]) - 1 or board[row][col + 1] > me:
                 # right
                 score += 1
-                
+
             if score == 4:
                 print(f"found a low ({row}, {col})")
                 results += board[row][col] + 1
-    
-    
+
+
     return results
 
 

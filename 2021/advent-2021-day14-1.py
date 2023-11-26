@@ -9,19 +9,19 @@ def run(data, steps):
     for rule in data:
         a, b = rule.split(' -> ')
         rules[a] = b
-        
+
     print (poly)
     print(rules)
-    
-    
+
+
     for step in range(1, steps + 1):
 #        print (f"{step}: {poly}")
         new_poly = ""
         for index in range(len(poly) - 1):
             between = rules.get(poly[index:index+2], "")
-            new_poly += poly[index] + between 
+            new_poly += poly[index] + between
         new_poly += poly[-1]
-        
+
         poly = new_poly
 
         from collections import defaultdict
@@ -31,10 +31,10 @@ def run(data, steps):
         count = dict(count)
         low = count[min(count, key=count.get)]
         high = count[max(count, key=count.get)]
-        
+
         results = high - low
-        
-        
+
+
     return results
 
 if __name__ == "__main__":

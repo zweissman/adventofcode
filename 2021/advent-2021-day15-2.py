@@ -36,9 +36,9 @@ if __name__ == "__main__":
     for count in range(1,5):
         for zrow in board:
             big_board.append([(x + count - 1) % 9 + 1 for x in zrow])
-        
-        
+
+
     # for zrow in big_board:
     #     print(zrow)
-    
+
     results = run(big_board)

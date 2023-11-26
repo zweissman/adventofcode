@@ -12,7 +12,7 @@ def run(data):
     hall = list('.' * 11)
     rooms = {'A': list(data[0]), 'B': list(data[1]), 'C': list(data[2]), 'D': list(data[3])}
     results = move(hall, rooms)
-    
+
     return results
 
 def move(hall, rooms):
@@ -22,14 +22,14 @@ def move(hall, rooms):
     # given a state, what is the cost to get to "done"?
     show(hall, rooms)
     # move top -> L or R
-    # move L or R -> 
+    # move L or R ->
     # always move to destination ASAP
     key = (tuple((k, tuple(v)) for k,v in rooms.items()), tuple(hall))
     if done(rooms):
         return 0
     if key in DP:
         return DP[key]
-    
+
     # move to dest if possible
     for i, c in enumerate(hall):
         if c in rooms and can_move_to(c, rooms[c]):
@@ -72,7 +72,7 @@ def move(hall, rooms):
     DP[key] = ans
     #print(len(DP), ans)
     return ans
- 
+
 def done(rooms):
     for k, v in rooms.items():
         for vv in v:

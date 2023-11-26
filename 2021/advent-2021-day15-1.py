@@ -13,7 +13,7 @@ def run(data, start, end):
     while True:
         rf, x, y = heapq.heappop(paths)
 
-        if visited[x][y]: 
+        if visited[x][y]:
             continue
 
         if (x, y) == end:
@@ -22,9 +22,9 @@ def run(data, start, end):
         visited[x][y] = 1
 
         for x2, y2 in [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]:
-            #if 0 < x2 < len(data) and 0 < y2 < len(data[0]): 
-                
-            if visited[x2][y2] or not 0 <= x2 < len(data) or not 0 <= y2 < len(data[0]): 
+            #if 0 < x2 < len(data) and 0 < y2 < len(data[0]):
+
+            if visited[x2][y2] or not 0 <= x2 < len(data) or not 0 <= y2 < len(data[0]):
                 continue
             heapq.heappush(paths, (rf + data[x2][y2], x2, y2))
 
@@ -33,9 +33,9 @@ if __name__ == "__main__":
     data = DATA_TEST
     for row in data:
         board.append([int(x) for x in row])
-        
+
     for row in board:
         print(row)
-    
+
     results = run(board, (0, 0), (len(data) - 1, len(data[0]) - 1))
     print(results)

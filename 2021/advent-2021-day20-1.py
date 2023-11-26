@@ -51,7 +51,7 @@ def run(decode, board):
 if __name__ == "__main__":
     data = DATA
     decode = list(data.pop(0))
-    
+
     data.pop(0)
     board = []
     for row in data:

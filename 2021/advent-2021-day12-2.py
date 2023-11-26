@@ -10,14 +10,14 @@ def run(data):
     paths = []
 
     print (caves)
-    
+
     for cave in caves['start']:
         path = visit_cave(cave, caves, ['start'])
         paths.extend(path)
-        
+
     results = len(paths)
     return results
-    
+
 def visit_cave(this_cave, caves, path):
     paths = []
     if this_cave in path:
@@ -34,12 +34,12 @@ def visit_cave(this_cave, caves, path):
         if cave == 'end':
             paths.append(path + [cave])
             continue
-        
+
         new_paths = visit_cave(cave, caves, path.copy())
         for new_path in new_paths:
             if len(new_path) > 0:
                 paths.append(new_path)
-        
+
 #         if len(new_paths) > 0:
 #             for new_path in new_paths:
 #                 if new_path[-1] == 'end':
@@ -47,8 +47,8 @@ def visit_cave(this_cave, caves, path):
 #                     pass
 
     return paths
-    
-    
+
+
 def setup_caves(data):
     caves = {}
     for path in data:

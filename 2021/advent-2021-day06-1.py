@@ -7,44 +7,44 @@ class FishClass(object):
         self.id = len(TANK) + 1
         self.countdown = countdown
         self.breed_cycle = breed_cycle
-        
+
     def new_day(self):
         if self.countdown == 0:
             # Spawn new
             fish = type(self)(self.breed_cycle + 1)
             TANK.append(fish)
-            
+
             self.countdown = self.breed_cycle - 1
         else:
             self.countdown -= 1
 
     def __repr__(self):
          return f"{self.id}: {self.countdown} of {self.breed_cycle}"
-        
+
     def __str__(self):
         return f"{self.id}: {self.countdown} of {self.breed_cycle}"
-        
+
 class Lanternfish(FishClass):
     LANTERNFISH_BREED_CYCLE = 7
-    
+
     def __init__(self, countdown):
         super().__init__(countdown, self.LANTERNFISH_BREED_CYCLE)
-    
+
 def run(data, number_of_days):
     results = 0
-    
+
     setup_tank(data)
-    
+
     for day in range(1, number_of_days + 1):
         print(f"Running day {day}")
         for index in range(len(TANK)):
             # Run the range like this so we don't trigger a new day for new fish added to the tank today.
             fish = TANK[index]
             fish.new_day()
-        
+
         # for fish in TANK:
         #     print(fish)
-        
+
     return len(TANK)
 
 def setup_tank(data):

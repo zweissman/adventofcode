@@ -12,8 +12,8 @@ def run(data):
         board.append([int(x) for x in row])
 
     for row in board:
-        print(row)     
-        
+        print(row)
+
     lows = []
     for row in range(len(board)):
         for col in range(len(board[0])):
@@ -31,33 +31,33 @@ def run(data):
             if col == len(board[0]) - 1 or board[row][col + 1] > me:
                 # right
                 score += 1
-                
+
             if score == 4:
                 print(f"found a low ({row}, {col})")
                 results += board[row][col] + 1
                 lows.append((row,col))
     print (lows)
-    
+
     sizes = []
     for low in lows:
         size_of_basin = get_size(low[0], low[1], board)
         sizes.append(size_of_basin)
         print(f"{low[0]}, {low[1]} has a basin of size {size_of_basin}")
-        
+
     sizes = sorted(sizes, reverse=True)
     results = sizes[0] * sizes[1] * sizes[2]
-    
+
     return results
 
 def get_size(row, col, board):
-        
+
     me = board[row][col]
     board[row][col] = 10     # so we don't double count
 
     # print("---------------")
     # for line in board:
     #     print(line)
-    
+
     size = 1
     if row != 0 and 9 > board[row - 1][col] > me:
         # up

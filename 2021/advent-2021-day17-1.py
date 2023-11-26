@@ -3,11 +3,11 @@ DATA = 'target area: x=235..259, y=-118..-62'
 
 def run(x_range, y_range):
     results = 0
-    
+
 #    xv, yv = 17, -4
     max_y = 0
     max_v = None
-    
+
     for xv_start in range(-200, 200):
         for yv_start in range(-200, 200):
             xv, yv = xv_start, yv_start
@@ -15,18 +15,18 @@ def run(x_range, y_range):
             ys = [0]
             x, y = 0, 0
             #print(f"Starting with v({xv}, {yv})")
-            
+
             while True:
                 x += xv
                 y += yv
                 ys.append(y)
-                
+
                 if xv > 0:
                     xv -= 1
                 elif xv < 0:
                     xv += 1
-                yv = yv -1 
-                                
+                yv = yv -1
+
                 step +=1
                 #print(f"step {step}: ({x}, {y}) v({xv}, {yv})")
                 if x_range[0] <= x <= x_range[1] and y_range[0] <= y <= y_range[1]:

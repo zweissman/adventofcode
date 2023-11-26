@@ -21,7 +21,7 @@ def run(data):
 
     scanner_count = len(board)
     board2 = [None] * scanner_count
-    
+
     for scanner in board:
         diff = {}
         for s1 in range(len(scanner)):
@@ -32,17 +32,17 @@ def run(data):
         diff = dict(sorted(diff.items(), key=lambda x: (x[1][0], x[1][1], x[1][2])))
         diffs.append(diff)
 
-    matches = {}     
+    matches = {}
     for s1 in range(scanner_count):
         for s2 in range(s1 + 1, scanner_count):
             matches[(s1, s2)] = []
             match = matches[(s1, s2)]
-            
+
             for k0, v0 in diffs[s1].items():
                 for k1, v1 in diffs[s2].items():
                     if v0 == v1:
                         match.append((k0, k1))
-                
+
     decodes = {}
     for s1 in range(scanner_count):
         for s2 in range(s1 + 1, scanner_count):
@@ -62,7 +62,7 @@ def run(data):
                             decode = remove_value(value, decode)
                         else:
                             assert False, "BAD A"
-                            
+
                 if match[0][1] not in decode:
                     decode[match[0][1]] = list(match[1])
                 else:
@@ -74,7 +74,7 @@ def run(data):
                             decode = remove_value(value, decode)
                         else:
                             assert False, "BAD B"
-                            
+
     # Determine orientation and scanner location
     board2[0] = board[0]
     scanner_locations = {}
@@ -104,9 +104,9 @@ def run(data):
                 scanner_location = get_scanner_location(s1, s2, decodes[(s1, s2)], board, board2)
                 print (f"{s1} --> {s2} == {scanner_location}")
                 scanner_locations[s2] = scanner_location
-                
+
                 continue
-            
+
             # Try the inverse map
             skip = False
             if s1 in scanner_locations:
@@ -116,15 +116,15 @@ def run(data):
             if board2[s2] is None:
                 # We don't have this source sonar updated to values in reference to 0 yet, skip
                 skip = True
-            
+
             if skip == False:
                 decode = {v: k for k, v in decodes[(s1, s2)].items()}
                 scanner_location = get_scanner_location(s2, s1, decode, board, board2)
                 print (f"{s1} <-- {s2} == {scanner_location}")
                 scanner_locations[s1] = scanner_location
-                
-            
-                
+
+
+
 
     all_beacons = set()
     for index, beacons in enumerate(board2):
@@ -132,13 +132,13 @@ def run(data):
             print(f"Unmapped scanner {index}")
         else:
             all_beacons.update(beacons)
-            
+
     results = len(all_beacons)
     print(results)
 
     max_man = 0
     max_points = None
-    
+
     for s1, c1 in scanner_locations.items():
         for s2, c2 in scanner_locations.items():
             if s1 >= s2:
@@ -148,25 +148,25 @@ def run(data):
             if man > max_man:
                 max_man = man
                 max_points = (s1, s2)
-            
-    
+
+
     print(max_points)
     return max_man
 
 def manhattan_distance(c1, c2):
     return abs(c1[0] - c2[0]) + abs(c1[1] - c2[1]) + abs(c1[2] - c2[2])
-    
+
 
 def get_scanner_location(s1, s2, decode, board, board2, x_op=operator.add, y_op=operator.add, z_op=operator.add, x_index=0, y_index=1, z_index=2):
     try:
         xs, ys, zs = [], [], []
         x, y, z = None, None, None
-        
+
         for k, v in decode.items():
             xs.append(x_op(board2[s1][k][0], board[s2][v][x_index]))
             ys.append(y_op(board2[s1][k][1], board[s2][v][y_index]))
             zs.append(z_op(board2[s1][k][2], board[s2][v][z_index]))
-            
+
         print(f"{s1} --> {s2} [{x_index}][{y_index}][{z_index}], {x_op} {xs[0:3]} - {y_op} {ys[0:3]} - {z_op} {zs[0:3]}")
         if len(list(set(xs))) == 1:
             x = list(xs)[0]
@@ -175,7 +175,7 @@ def get_scanner_location(s1, s2, decode, board, board2, x_op=operator.add, y_op=
                 x_op = operator.sub
             else:
                 x_op = None
-                
+
         if len(list(set(ys))) == 1:
             y = list(ys)[0]
         else:
@@ -183,7 +183,7 @@ def get_scanner_location(s1, s2, decode, board, board2, x_op=operator.add, y_op=
                 y_op = operator.sub
             else:
                 y_op = None
-                
+
         if len(list(set(zs))) == 1:
             z = list(zs)[0]
         else:
@@ -204,7 +204,7 @@ def get_scanner_location(s1, s2, decode, board, board2, x_op=operator.add, y_op=
             board2[s2] = new_board
 
             return (x, y, z)
-        
+
         if x is y is z is x_op is y_op is z_op is None:
             x_index, y_index, z_index = y_index, z_index, x_index
             x_op = operator.add
@@ -222,10 +222,10 @@ def get_scanner_location(s1, s2, decode, board, board2, x_op=operator.add, y_op=
             x_index, z_index = z_index, x_index
             x_op = operator.add
             z_op = operator.add
-            
+
         return get_scanner_location(s1, s2, decode, board, board2, x_op, y_op, z_op, x_index, y_index, z_index)
     except Exception as e:
-        print(e)    
+        print(e)
 
 def remove_value(value, decode):
     for k, v in decode.items():
@@ -233,7 +233,7 @@ def remove_value(value, decode):
             v.remove(value)
             if len(v) == 1:
                 decode[k] = v.pop()
-    
+
     return decode
 
 if __name__ == "__main__":

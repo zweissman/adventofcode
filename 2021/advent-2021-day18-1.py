@@ -58,14 +58,14 @@ def run(data, counter=1):
 
     board = []
     mark = 'a'
-    
+
     while True:
         data_split = data.split('+', 1)
         if len(data_split) == 2:
             data = '[' + data_split[0] + ',' + data_split[1] + ']'
-        else: 
+        else:
             break
-    
+
     digit = ""
     for x in data:
         if x.isdigit():
@@ -90,7 +90,7 @@ def run(data, counter=1):
 
 def parse_board(board):
     print(format_board(board))
-    
+
 
     for index in range(len(board)):
         if isinstance(board[index], int) and index + 1 < len(board) and isinstance(board[index+1], int):
@@ -118,15 +118,15 @@ def parse_board(board):
             nest_clean = nest.replace('[', '').replace(']', '')
             if '[' in nest:
                 nest_clean = chr(ord(nest_clean) + 1)
-            
-            
+
+
             board[index] = '[' + nest_clean
             board.insert(index+1, int(point / 2))
             board.insert(index+2, point-int(point/2))
             board.insert(index+3, ']' + nest_clean)
-            
+
             return parse_board(board)
-                
+
 
     return board
 
@@ -134,13 +134,13 @@ def find_nest(start, end, step, board):
     direction = "right"
     if step < 0:
         direction = "left"
-    
+
     for index in range(start, end + step, step):
         if isinstance(board[index], str):
             return board[index]
-        
+
     return None
-    
+
 def add_number(number, start, end, step, board):
     direction = "right"
     if step < 0:
@@ -155,12 +155,12 @@ def add_number(number, start, end, step, board):
 
     if DEBUG: print(f"Found no number to add {number} to {direction}")
     return None
-        
-    
+
+
 def get_next_number(data):
     found_digit = False
     digit = ""
-    
+
     for index, x in enumerate(list(data)):
         if x == ',':
             continue
@@ -194,10 +194,10 @@ def calc_mag(answer):
 
     return(answer)
 
-    
+
 if __name__ == "__main__":
 #    print(calc_mag('[[[[6,6],[7,6]],[[7,7],[7,0]]],[[[7,7],[7,7]],[[7,8],[9,9]]]]'))
-    
+
     data = DATA
     run_data = run(data[0])
     answer = format_board(run_data)
@@ -206,11 +206,11 @@ if __name__ == "__main__":
         print('-' * 50)
         print(f"ADDING {run_data}")
         print('-' * 50)
-    
+
         results = run(run_data)
         answer = format_board(results)
-            
+
         print (answer)
     print(calc_mag(answer))
-        
-        
+
+

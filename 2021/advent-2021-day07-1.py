@@ -7,7 +7,7 @@ def run(data):
     max_val = max(data)
     min_fuel_position = -1
     min_fuel_value = 99999999
-    
+
     data = Counter(data)
     print(data)
 
