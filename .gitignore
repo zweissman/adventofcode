@@ -2,3 +2,6 @@
 *data*
 *xadvent*
 *__pycache__*
+**/input/
+.venv/
+*.code-workspace
