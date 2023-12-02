@@ -1,3 +1,4 @@
+# pylint: disable=too-many-return-statements,too-many-branches,duplicate-code,unused-argument
 FILE_NAME = "2023/input/01.txt"
 
 
@@ -8,16 +9,16 @@ def run(part: int, test_run: bool = False, debug: bool = False):  # pylint: disa
         file = FILE_NAME
 
     with open(file, encoding="utf-8") as f:
-        data = f.read()
+        data = f.readlines()
     part_function = part1 if part == 1 else part2
 
     return part_function(data, debug)
 
 
-def part1(data: str, debug: bool = False) -> int:  # pylint: disable=duplicate-code, unused-argument
+def part1(data: list[str], debug: bool = False) -> int:  # pylint: disable=duplicate-code, unused-argument
     results = 0
 
-    for line in data.split():
+    for line in data:
         start, end = None, None
         for letter in line:
             if letter.isnumeric():
@@ -34,10 +35,10 @@ def part1(data: str, debug: bool = False) -> int:  # pylint: disable=duplicate-c
     return results
 
 
-def part2(data: str, debug: bool = False) -> int:  # pylint: disable=duplicate-code, unused-argument
+def part2(data: list[str], debug: bool = False) -> int:  # pylint: disable=duplicate-code
     results = 0
 
-    for line in data.split():
+    for line in data:
         start, end = None, None
         start_line, end_line = line, line
 
