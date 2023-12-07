@@ -77,8 +77,8 @@ def name_hand(hand: str, part: int, debug: bool) -> int:
         k: v
         for k, v in sorted(hand_dict.items(), key=lambda item: item[1], reverse=True)
     }
-    if debug:
-        print(sorted_hand_dict)
+    if debug: print(sorted_hand_dict)
+    
     if part == 2:
         if jokers == 5:
             sorted_hand_dict["0"] = jokers
@@ -89,21 +89,21 @@ def name_hand(hand: str, part: int, debug: bool) -> int:
             sorted_hand_dict[top_card] += jokers
 
     for k, v in sorted_hand_dict.items():
-        if v == 5:
-            return 1
-        if v == 4:
-            return 2
-        if v == 3:
+        if v == 5: 
+            return 1 # 5-of-a-kind
+        if v == 4: 
+            return 2 # 4-of-a-kind
+        if v == 3: 
             if 2 in sorted_hand_dict.values():
-                return 3
+                return 3 # full house
             else:
-                return 4
+                return 4 # 3-of-a-kind    
         if v == 2:
             if len(sorted_hand_dict) == 3:
-                return 5
+                return 5 # 2 pairs
             else:
-                return 6
-        return 7
+                return 6 # 1 pair
+        return 7 # high card
 
 
 def part2(data: list[str], debug: bool = False) -> int:
@@ -115,7 +115,7 @@ def part2(data: list[str], debug: bool = False) -> int:
         hand = (
             hand.replace("A", "E")
             .replace("T", "A")
-            .replace("J", "0")
+            .replace("J", "0") # joker is weakest rank
             .replace("Q", "C")
             .replace("K", "D")
         )
