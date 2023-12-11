@@ -6,9 +6,7 @@ import itertools
 FILE_NAME = "2023/input/11.txt"
 
 
-def run(
-    part: int, empty_row_count: int = 1, test_run: bool = False, debug: bool = False
-):
+def run(part: int, test_run: bool = False, debug: bool = False):
     if test_run:
         file = FILE_NAME.replace(".txt", "-test.txt")
     else:
@@ -20,7 +18,7 @@ def run(
     data = [x.strip() for x in data]
     part_function = part1 if part == 1 else part2
 
-    return part_function(data, empty_row_count, debug)
+    return part_function(data=data, debug=debug)
 
 
 def show(grid: list[list[str]], debug: bool = False):
@@ -106,15 +104,12 @@ def calc_distance(
     return distance
 
 
-def part2(data: list[str], empty_row_count: int = 1, debug: bool = False) -> int:
+def part2(data: list[str], empty_row_count: int = 999999, debug: bool = False) -> int:
     return part1(data, empty_row_count, debug)
 
 
 if __name__ == "__main__":
-    # final = run(part=1, empty_row_count=1, test_run=True, debug=True)  # 374
-    # final = run(part=1, empty_row_count=1, test_run=False, debug=False)  # 9543156
-    # final = run(part=2, empty_row_count=999999, test_run=True, debug=True) # 82000210
-    final = run(
-        part=2, empty_row_count=999999, test_run=False, debug=False
-    )  # 625243292686
-    print("ANSWER:", final)
+    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 374
+    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 9543156
+    # print("Test2: ", run(part=2, test_run=True, debug=True)) # 82000210
+    print("Real2: ", run(part=2, test_run=False, debug=False))  # 625243292686
