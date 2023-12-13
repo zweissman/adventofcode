@@ -1,10 +1,9 @@
 # pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
 # pylint: disable=unnecessary-list-index-lookup
 
-FILE_NAME = "2023/input/12.txt"
-
-
 from itertools import product
+
+FILE_NAME = "2023/input/12.txt"
 
 
 def run(part: int, test_run: bool = False, debug: bool = False):
@@ -22,9 +21,7 @@ def run(part: int, test_run: bool = False, debug: bool = False):
     return part_function(data=data, debug=debug)
 
 
-
 def part1(data: list[str], debug: bool = False) -> int:
-
     results = 0
     for line in data:
         if line.startswith("//"):
@@ -34,19 +31,21 @@ def part1(data: list[str], debug: bool = False) -> int:
         springs = springs.replace(".", " ")
 
         result = get_variation_count(springs, values)
-        if debug: print (springs, values, result)
+        if debug:
+            print(springs, values, result)
         results += result
 
     return results
+
 
 def get_variation_count(springs: str, values: str) -> int:
     variations = []
     for variation in product(" #", repeat=springs.count("?")):
         variations.append("".join(variation))
-   
+
     results = []
     for variation in variations:
-        result = get_valid_count(merge_run(springs, variation), values)
+        result = get_valid_count(merge_run(springs, str(variation)), values)
         results.append(result)
 
     return sum(results)
@@ -63,10 +62,10 @@ def get_valid_count(springs: str, values: str) -> int:
 
 def merge_run(springs: str, subs: str) -> str:
     assert springs.count("?") == len(subs)
-    
+
     for c in subs:
         springs = springs.replace("?", c, 1)
-        
+
     return springs
 
 
@@ -75,22 +74,21 @@ def part2(data: list[str], debug: bool = False) -> int:
 
     grid = []
 
-    for i, d in enumerate(data):
+    for d in data:
         d = d.strip()
         grid.append(list(d))
-
-
 
     return results
 
 
-import time
-
 if __name__ == "__main__":
+    import time  # qa: ignore:E402
+
     start_time = time.time()
+
     print("Test1: ", run(part=1, test_run=True, debug=True))  # 21
-    #print("Real1: ", run(part=1, test_run=False, debug=False))  # 6949
-    # print("Test2: ", run(part=2, test_run=True, debug=True)) # 
-    #print("Real2: ", run(part=2, test_run=False, debug=False))  # 
+    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 6949
+    # print("Test2: ", run(part=2, test_run=True, debug=True)) #
+    # print("Real2: ", run(part=2, test_run=False, debug=False))  #
 
     print(time.time() - start_time)
