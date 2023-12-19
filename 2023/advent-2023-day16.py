@@ -65,7 +65,8 @@ def part2(data: list[str], debug: bool = False) -> int:
         start = (x, y, direction)
         result = init_run(grid, data, start, debug)
         if max_energy < result:
-            print(f"({x}, {y}) {direction} {max_energy=}")
+            if debug:
+                print(f"({x}, {y}) {direction} {max_energy=}")
 
             max_energy = result
 
@@ -75,7 +76,8 @@ def part2(data: list[str], debug: bool = False) -> int:
         start = (x, y, direction)
         result = init_run(grid, data, start, debug)
         if max_energy < result:
-            print(f"({x}, {y}) {direction} {max_energy=}")
+            if debug:
+                print(f"({x}, {y}) {direction} {max_energy=}")
 
             max_energy = result
 
@@ -85,7 +87,8 @@ def part2(data: list[str], debug: bool = False) -> int:
         start = (x, y, direction)
         result = init_run(grid, data, start, debug)
         if max_energy < result:
-            print(f"({x}, {y}) {direction} {max_energy=}")
+            if debug:
+                print(f"({x}, {y}) {direction} {max_energy=}")
 
             max_energy = result
 
@@ -95,7 +98,8 @@ def part2(data: list[str], debug: bool = False) -> int:
         start = (x, y, direction)
         result = init_run(grid, data, start, debug)
         if max_energy < result:
-            print(f"({x}, {y}) {direction} {max_energy=}")
+            if debug:
+                print(f"({x}, {y}) {direction} {max_energy=}")
 
             max_energy = result
 
@@ -203,7 +207,7 @@ def move(
 
 
 if __name__ == "__main__":
-    print("Test1: ", run(part=1, test_run=True, debug=True))  # 46
+    # print("Test1: ", run(part=1, test_run=True, debug=False))  # 46
     # print("Real1: ", run(part=1, test_run=False, debug=False))  # 7884
-    print("Test2: ", run(part=2, test_run=True, debug=True))  # 51
-    # print("Real2: ", run(part=2, test_run=False, debug=False))  #
+    # print("Test2: ", run(part=2, test_run=True, debug=False))  # 51
+    print("Real2: ", run(part=2, test_run=False, debug=False))  # 8185
