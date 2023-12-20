@@ -256,8 +256,6 @@ def part2(data: list[str], debug: bool = False) -> int:
             if len(results) == 4:
                 return lcm(*results.values())
 
-    return None
-
 
 if __name__ == "__main__":
     # print("Test1: ", run(part=1, test_run=True, debug=True))  # 11687500
