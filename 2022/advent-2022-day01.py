@@ -23,7 +23,6 @@ def part1(data: list[str], debug: bool = False) -> int:
     max_total = 0
     total = 0
 
-
     for row in data:
         if row == 0 or row == "":
             max_total = max(total, max_total)
@@ -33,7 +32,8 @@ def part1(data: list[str], debug: bool = False) -> int:
 
     results = max(total, max_total)
 
-    return results 
+    return results
+
 
 def part2(data: list[str], debug: bool = False) -> int:
     max_total = []
@@ -59,10 +59,8 @@ def part2(data: list[str], debug: bool = False) -> int:
     return sum(max_total)
 
 
-
-
 if __name__ == "__main__":
     # print("Test1: ", run(part=1, test_run=True, debug=True)) # 24000
     # print("Real1: ", run(part=1, test_run=False, debug=False)) # 69626
     # print("Test2: ", run(part=2, test_run=True, debug=True)) # 45000
-    print("Real2: ", run(part=2, test_run=False, debug=False)) # 206780
+    print("Real2: ", run(part=2, test_run=False, debug=False))  # 206780

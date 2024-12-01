@@ -2079,7 +2079,6 @@ def move(command, debug):
                 show()
             if debug:
                 print(score())
-            a = 1
 
     except IndexError:
         raise Exception(f"Ran off the board, increase DIM: H:{H} T:{T}")
