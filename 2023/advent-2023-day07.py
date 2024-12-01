@@ -1,3 +1,4 @@
+from __future__ import annotations
 # pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
 # pylint: disable=unnecessary-list-index-lookup, E701
 
@@ -22,7 +23,7 @@ def run(part: int, test_run: bool = False, debug: bool = False):
 def part1(data: list[str], debug: bool = False) -> int:
     results = 0
 
-    hands = {}
+    hands: dict = {}
     for row in data:
         hand, bid = row.split(" ")
         hand = (
@@ -62,8 +63,8 @@ def part1(data: list[str], debug: bool = False) -> int:
 def name_hand(hand: str, part: int, debug: bool) -> int:
     if debug:
         print(hand)
-    hand = sorted(list(hand))
-    hand_dict = {}
+    hand = "".join(sorted(list(hand)))
+    hand_dict: dict[str, int] = {}
     jokers = 0
     for c in hand:
         if c == "0":
@@ -77,8 +78,9 @@ def name_hand(hand: str, part: int, debug: bool) -> int:
         k: v
         for k, v in sorted(hand_dict.items(), key=lambda item: item[1], reverse=True)
     }
-    if debug: print(sorted_hand_dict)
-    
+    if debug:
+        print(sorted_hand_dict)
+
     if part == 2:
         if jokers == 5:
             sorted_hand_dict["0"] = jokers
@@ -89,33 +91,35 @@ def name_hand(hand: str, part: int, debug: bool) -> int:
             sorted_hand_dict[top_card] += jokers
 
     for k, v in sorted_hand_dict.items():
-        if v == 5: 
-            return 1 # 5-of-a-kind
-        if v == 4: 
-            return 2 # 4-of-a-kind
-        if v == 3: 
+        if v == 5:
+            return 1  # 5-of-a-kind
+        if v == 4:
+            return 2  # 4-of-a-kind
+        if v == 3:
             if 2 in sorted_hand_dict.values():
-                return 3 # full house
+                return 3  # full house
             else:
-                return 4 # 3-of-a-kind    
+                return 4  # 3-of-a-kind
         if v == 2:
             if len(sorted_hand_dict) == 3:
-                return 5 # 2 pairs
+                return 5  # 2 pairs
             else:
-                return 6 # 1 pair
-        return 7 # high card
+                return 6  # 1 pair
+        return 7  # high card
+
+    return 0
 
 
 def part2(data: list[str], debug: bool = False) -> int:
     results = 0
 
-    hands = {}
+    hands: dict[int, list[tuple]] = {}
     for row in data:
         hand, bid = row.split(" ")
         hand = (
             hand.replace("A", "E")
             .replace("T", "A")
-            .replace("J", "0") # joker is weakest rank
+            .replace("J", "0")  # joker is weakest rank
             .replace("Q", "C")
             .replace("K", "D")
         )
@@ -147,8 +151,8 @@ def part2(data: list[str], debug: bool = False) -> int:
 
 
 if __name__ == "__main__":
-    final = run(part=1, test_run=True, debug=True)  # 6440
+    # final = run(part=1, test_run=True, debug=True)  # 6440
     # final = run(part=1, test_run=False, debug=False)  # 253866470
-    # final = run(part=2, test_run=True, debug=True) # 5905
+    final = run(part=2, test_run=True, debug=True)  # 5905
     # final = run(part=2, test_run=False, debug=False)  # 254494947
     print("ANSWER:", final)

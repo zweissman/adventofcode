@@ -216,7 +216,7 @@ def find_sum(target_total, data):
                     f"{total} = {index}: {data[index]} + {pointer1}: {data[pointer1]} + {pointer2}: {data[pointer2]}"
                 )
                 if total == TARGET_VALUE:
-                    print(f"FOUND A MATCH")
+                    print("FOUND A MATCH")
                     return (data[index], data[pointer1], data[pointer2])
                 elif total > TARGET_VALUE:
                     # We are too far, get a new index

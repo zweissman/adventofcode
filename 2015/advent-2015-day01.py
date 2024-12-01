@@ -39,14 +39,14 @@ What is the position of the character that causes Santa to first enter the basem
 
 
 def part1_run1() -> int:
-    with open(FILE_NAME, "r") as f:
+    with open(FILE_NAME) as f:
         input = f.read()
 
         return input.count("(") - input.count(")")
 
 
 def part1_run2() -> int:
-    with open(FILE_NAME, "r") as f:
+    with open(FILE_NAME) as f:
         instructions = f.read()
     floor = 0
     for instruction in instructions:
@@ -137,7 +137,7 @@ def part1_run8() -> int:
 
 
 def part1_run9() -> int:
-    with open(FILE_NAME, "r") as f:
+    with open(FILE_NAME) as f:
         input = f.read()
     floor = 0
     for c in input:
@@ -161,7 +161,7 @@ def part1_run10() -> int:
 
 
 def part2_run1() -> int:
-    with open(FILE_NAME, "r") as f:
+    with open(FILE_NAME) as f:
         instructions = f.read()
     floor = 0
     for i in range(len(instructions)):
@@ -204,7 +204,7 @@ def part2_run3() -> int:
 
 
 def part2_run4() -> int:
-    with open(FILE_NAME, "r") as f:
+    with open(FILE_NAME) as f:
         instructions = f.read()
 
     floor = 0
@@ -221,7 +221,7 @@ def part2_run4() -> int:
 
 
 def part2_run5() -> int:
-    with open(FILE_NAME, "r") as f:
+    with open(FILE_NAME) as f:
         input = f.read()
     floor = 0
     for i, c in enumerate(input):
@@ -235,7 +235,7 @@ def part2_run5() -> int:
 
 
 def part2_run6() -> int:
-    with open(FILE_NAME, "r") as f:
+    with open(FILE_NAME) as f:
         input = f.read()
     floor = 0
     for i in range(len(input)):
@@ -250,7 +250,7 @@ def part2_run6() -> int:
 
 
 def part2_run7() -> int:
-    with open(FILE_NAME, "r") as f:
+    with open(FILE_NAME) as f:
         data = f.read()
     floor = 0
     for i in range(len(data)):
@@ -265,7 +265,7 @@ def part2_run7() -> int:
 
 
 def part2_run8() -> int:
-    with open(FILE_NAME, "r") as f:
+    with open(FILE_NAME) as f:
         input = f.read()
     floor = 0
     for i, c in enumerate(input):

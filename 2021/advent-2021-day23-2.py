@@ -11,7 +11,12 @@ COST = {"A": 1, "B": 10, "C": 100, "D": 1000}
 
 def run(data):
     hall = list("." * 11)
-    rooms = {"A": list(data[0]), "B": list(data[1]), "C": list(data[2]), "D": list(data[3])}
+    rooms = {
+        "A": list(data[0]),
+        "B": list(data[1]),
+        "C": list(data[2]),
+        "D": list(data[3]),
+    }
     results = move(hall, rooms)
 
     return results

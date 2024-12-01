@@ -114,7 +114,6 @@ DATA = [
 
 
 from collections import defaultdict
-from functools import reduce
 
 decoder = ""
 initgrid = []

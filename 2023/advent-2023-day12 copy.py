@@ -3,8 +3,6 @@
 
 FILE_NAME = "2023/input/12.txt"
 
-from math import comb
-from functools  import reduce
 
 def run(part: int, test_run: bool = False, debug: bool = False):
     if test_run:
@@ -18,10 +16,10 @@ def run(part: int, test_run: bool = False, debug: bool = False):
     data = [x.strip() for x in data]
     part_function = part1 if part == 1 else part2
 
-    return part_function(data=data, debug=debug)
+    return part_function(data=data, debug=debug)  # type: ignore[operator]
 
 
-def show(grid: list[str], debug: bool = False):
+def show(grid: list[list[str]], debug: bool = False):
     if debug:
         print()
         for y in range(len(grid)):
@@ -31,12 +29,12 @@ def show(grid: list[str], debug: bool = False):
 def part1(data: list[str], debug: bool = False) -> int:
     results = 0
 
-    grid=[]
+    grid = []
     for d in data:
         if not d.startswith("//"):
             grid.append(d.strip())
 
-    #show(grid,debug)
+    # show(grid,debug)
 
     for row in grid:
         spring_str, value_str = row.split(" ")
@@ -44,10 +42,11 @@ def part1(data: list[str], debug: bool = False) -> int:
         elements = spring_str.split(".")
         elements = [x for x in elements if x != ""]
 
-        values = value_str.split(",")
-        values = [int(x) for x in values]
-        
-        if debug: print (elements, values)
+        values_str = value_str.split(",")
+        values = [int(x) for x in values_str]
+
+        if debug:
+            print(elements, values)
         value_total = sum(values) + len(values) - 1
         element_total = sum([len(x) for x in elements]) + len(elements) - 1
 
@@ -69,7 +68,8 @@ def part1(data: list[str], debug: bool = False) -> int:
             else:
                 break
 
-        if debug: print (elements, values)
+        if debug:
+            print(elements, values)
 
         while True:
             element = elements[-1]
@@ -82,11 +82,13 @@ def part1(data: list[str], debug: bool = False) -> int:
             else:
                 break
 
-        if debug: print (elements, values)
+        if debug:
+            print(elements, values)
 
         elements, values = reduce_elements(elements, values, debug)
 
-        if debug: print (elements, values)
+        if debug:
+            print(elements, values)
 
         if len(elements) == 1:
             value_total = sum(values) + len(values) - 1
@@ -110,9 +112,11 @@ def part1(data: list[str], debug: bool = False) -> int:
         #     results += 1
         # else:
         #     results += reduce((lambda x, y: x * y), combos)
-    
-        if debug: print (results)
-        if debug: print (elements, values)
+
+        if debug:
+            print(results)
+        if debug:
+            print(elements, values)
 
     return results
 
@@ -123,13 +127,15 @@ def reduce_elements(elements, values, debug) -> tuple[list[str], list[int]]:
         element = elements[i]
         value = values[i]
 
-        for x in range(value, 0 , -1):
+        for x in range(value, 0, -1):
             first_index = element.find("#" * x)
             if -1 < first_index <= value:
-                test_string = element[max(0, first_index-value):first_index+value]
+                test_string = element[max(0, first_index - value) : first_index + value]
                 if test_string.count("#") == value:
                     # We found what what we are looking for.
-                    element = element[first_index+value+1:] # Take an extra off for the spacer
+                    element = element[
+                        first_index + value + 1 :
+                    ]  # Take an extra off for the spacer
                     elements[i] = element
                     values.pop(i)
 
@@ -141,7 +147,8 @@ def reduce_elements(elements, values, debug) -> tuple[list[str], list[int]]:
             # All we have a ? in this element
             return elements, values
 
-        if debug: print (elements, values)
+        if debug:
+            print(elements, values)
 
     return elements, values
 
@@ -157,12 +164,11 @@ def part2(data: list[str], empty_row_count: int = 999999, debug: bool = False) -
 
     show(grid, debug)
 
-
     return results
 
 
 if __name__ == "__main__":
-     print("Test1: ", run(part=1, test_run=True, debug=True))  # 
-    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 
-    # print("Test2: ", run(part=2, test_run=True, debug=True)) # 
-    #print("Real2: ", run(part=2, test_run=False, debug=False))  # 
+    print("Test1: ", run(part=1, test_run=True, debug=True))  #
+# print("Real1: ", run(part=1, test_run=False, debug=False))  #
+# print("Test2: ", run(part=2, test_run=True, debug=True)) #
+# print("Real2: ", run(part=2, test_run=False, debug=False))  #

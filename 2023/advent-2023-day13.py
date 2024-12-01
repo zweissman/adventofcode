@@ -43,9 +43,9 @@ def part2(data: list[str], debug: bool = False) -> int:
     return results
 
 
-
 if __name__ == "__main__":
-    import time # qa: ignore:E402
+    import time  # qa: ignore:E402
+
     start_time = time.time()
 
     print("Test1: ", run(part=1, test_run=True, debug=True))  #

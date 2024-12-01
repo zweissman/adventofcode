@@ -1,5 +1,4 @@
 from collections import Counter
-from math import factorial
 
 DATA_TEST = [16, 1, 2, 0, 4, 2, 7, 1, 2, 14]
 DATA = [

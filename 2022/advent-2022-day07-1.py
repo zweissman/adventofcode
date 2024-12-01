@@ -1164,9 +1164,8 @@ DATA = [
     "314303 qlbqgp.njq",
 ]
 
-import collections
 
-from treelib import Node, Tree
+from treelib import Tree
 
 
 def run(data, folder_name, debug=False):

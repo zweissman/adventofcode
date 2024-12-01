@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 DATA_TEST = [
     "Monkey 0:",
     "  Starting items: 79, 98",
@@ -110,7 +108,14 @@ def run(data, debug=False):
         f = int(data.pop(0).replace("    If false: throw to monkey ", ""))
         if len(data) > 0:
             data.pop(0)
-        monkey = {"items": items, "operation": operation, "test": test, "t": t, "f": f, "count": 0}
+        monkey = {
+            "items": items,
+            "operation": operation,
+            "test": test,
+            "t": t,
+            "f": f,
+            "count": 0,
+        }
         if value:
             monkey["value"] = value
         monkeys[monkey_id] = monkey

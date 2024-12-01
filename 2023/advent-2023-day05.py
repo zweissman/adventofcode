@@ -1,7 +1,7 @@
+from __future__ import annotations
 # pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
 # pylint: disable=unnecessary-list-index-lookup
 
-from collections import defaultdict
 
 FILE_NAME = "2023/input/05.txt"
 
@@ -31,9 +31,6 @@ class Zrange:
     def __repr__(self):
         return f"Zrange({self.source_start}-{self.source_start+self.length}={self.dest_start},{self.dest_start+self.length})"
 
-    def __repr__(self) -> str:
-        return f"Zmap({len(self.ranges)})"
-
 
 class Zmap:
     def __init__(self):
@@ -49,10 +46,11 @@ class Zmap:
         else:
             return x
 
+    def __repr__(self) -> str:
+        return f"Zmap({len(self.ranges)})"
+
 
 def part1(data: list[str], debug: bool = False) -> int:
-    results = 0
-
     seeds = set(data.pop(0).split(": ")[1].split(" "))
     data.pop(0)
 
@@ -87,7 +85,7 @@ def part1(data: list[str], debug: bool = False) -> int:
     return min(locations)
 
 
-def process_map(data: list[str]) -> dict:
+def process_map(data: list[str]) -> Zmap:
     zmap = Zmap()
     while data:
         line = data.pop(0)
@@ -100,7 +98,7 @@ def process_map(data: list[str]) -> dict:
     return zmap
 
 
-def process_map_reverse(data: list[str]) -> dict:
+def process_map_reverse(data: list[str]) -> Zmap:
     zmap = Zmap()
     while data:
         line = data.pop(0)
@@ -113,7 +111,7 @@ def process_map_reverse(data: list[str]) -> dict:
     return zmap
 
 
-def part2(data: list[str], debug: bool = False) -> int:
+def part2(data: list[str], debug: bool = False) -> int | None:
     seeds = data.pop(0).split(": ")[1].split(" ")
     seed_list = []
     for x in range(0, len(seeds), 2):
@@ -138,7 +136,7 @@ def part2(data: list[str], debug: bool = False) -> int:
     data.pop(0)
     humidity_location_map = process_map_reverse(data)
 
-    location = 20191102
+    location = 1
     while location <= 20191103:
         humidity = humidity_location_map.eval(location)
         temp = temp_humidity_map.eval(humidity)
@@ -161,7 +159,7 @@ def part2(data: list[str], debug: bool = False) -> int:
 
 
 if __name__ == "__main__":
-    # final = run(part=1, test_run=True, debug=True) # 35
+    # final = run(part=1, test_run=True, debug=True)  # 35
     # final = run(part=1, test_run=False, debug=False)  # 600279879
     # final = run(part=2, test_run=True, debug=True) # 46
     final = run(

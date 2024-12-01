@@ -2102,7 +2102,7 @@ def move(command, debug):
                 print(score())
             a = 1
 
-    except IndexError as e:
+    except IndexError:
         raise Exception(f"Ran off the board, increase DIM: KNOTS:{KNOTS}")
 
 

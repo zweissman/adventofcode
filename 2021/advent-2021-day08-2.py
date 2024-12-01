@@ -1,6 +1,6 @@
-from collections import Counter
-
-DATA_TEST = ["acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf"]
+DATA_TEST = [
+    "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf"
+]
 DATA_TEST2 = [
     "be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe",
     "edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc",
@@ -257,12 +257,20 @@ def run(data):
         segments["b"] = [x for x in mapping[4] if x not in mapping[1]]
         segments["d"] = [x for x in mapping[4] if x not in mapping[1]]
 
-        segments["e"] = [x for x in mapping[8] if x not in mapping[1] + mapping[4] + mapping[7]]
-        segments["g"] = [x for x in mapping[8] if x not in mapping[1] + mapping[4] + mapping[7]]
+        segments["e"] = [
+            x for x in mapping[8] if x not in mapping[1] + mapping[4] + mapping[7]
+        ]
+        segments["g"] = [
+            x for x in mapping[8] if x not in mapping[1] + mapping[4] + mapping[7]
+        ]
 
         # 2, 3, or 5 all have segments a, d, g
         assert len(unknowns5) == 3
-        common5 = set(unknowns5[0]).intersection(set(unknowns5[1])).intersection(set(unknowns5[2]))
+        common5 = (
+            set(unknowns5[0])
+            .intersection(set(unknowns5[1]))
+            .intersection(set(unknowns5[2]))
+        )
         #        print("COMMON 5")
         #        print(common5)
         # we know what segment a is, so remove that
@@ -272,7 +280,11 @@ def run(data):
 
         # 0, 6, 9
         assert len(unknowns6) == 3
-        common6 = set(unknowns6[0]).intersection(set(unknowns6[1])).intersection(set(unknowns6[2]))
+        common6 = (
+            set(unknowns6[0])
+            .intersection(set(unknowns6[1]))
+            .intersection(set(unknowns6[2]))
+        )
 
         # we know what segment a is, so remove that
         common6.remove(segments["a"][0])

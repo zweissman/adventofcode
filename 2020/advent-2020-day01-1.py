@@ -213,7 +213,7 @@ def find_sum(target_total, data):
             total = data[index] + data[pointer]
             print(f"{total} = {index}: {data[index]} + {pointer}: {data[pointer]}")
             if total == TARGET_VALUE:
-                print(f"FOUND A MATCH")
+                print("FOUND A MATCH")
                 return (data[index], data[pointer])
             elif total > TARGET_VALUE:
                 # We are too far, get a new index

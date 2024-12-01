@@ -1,6 +1,7 @@
-*-day00-1.py
+*-day00.py
 *data*
 *xadvent*
 *__pycache__*
 .venv/
 *.code-workspace
+*.ruff

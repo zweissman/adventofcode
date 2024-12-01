@@ -1,4 +1,3 @@
-import ast
 import re
 
 DATA_TEST1 = ["[[[[[9,8],1],2],3],4]"]
@@ -7,7 +6,10 @@ DATA_TEST3 = ["[[6,[5,[4,[3,2]]]],1]"]
 DATA_TEST4 = ["[[3,[2,[1,[7,3]]]],[6,[5,[4,[3,2]]]]]"]
 DATA_TEST5 = ["[[[[4,3],4],4],[7,[[8,4],9]]] + [1,1]"]
 
-DATA_TEST_SUM1 = ["[[[0,[4,5]],[0,0]],[[[4,5],[2,6]],[9,5]]]", "[7,[[[3,7],[4,3]],[[6,3],[8,8]]]]"]
+DATA_TEST_SUM1 = [
+    "[[[0,[4,5]],[0,0]],[[[4,5],[2,6]],[9,5]]]",
+    "[7,[[[3,7],[4,3]],[[6,3],[8,8]]]]",
+]
 DATA_TEST_SUM2 = [
     "[[[0,[4,5]],[0,0]],[[[4,5],[2,6]],[9,5]]]",
     "[7,[[[3,7],[4,3]],[[6,3],[8,8]]]]",
@@ -223,7 +225,9 @@ def parse_board(board):
                 print(f"Explode ({left_point}, {right_point}) @ {index}")
                 # Explode
                 left_index = add_number(left_point, index - 1, 0, -1, board)
-                right_index = add_number(right_point, index + 2, len(board) - 1, 1, board)
+                right_index = add_number(
+                    right_point, index + 2, len(board) - 1, 1, board
+                )
                 board.pop(index)
                 board[index] = 0
                 board.pop(index - 1)  # remove left bracket
@@ -234,7 +238,9 @@ def parse_board(board):
         if isinstance(board[index], int) and board[index] >= 10:
             # Split
             point = board[index]
-            print(f"Splitting {point} into [{int(point / 2)}, {point-int(point/2)}] @ {index}")
+            print(
+                f"Splitting {point} into [{int(point / 2)}, {point-int(point/2)}] @ {index}"
+            )
 
             nest = find_nest(index - 1, 0, -1, board)
             nest_clean = nest.replace("[", "").replace("]", "")
@@ -310,13 +316,17 @@ def format_board(board):
 
 def calc_mag(answer):
     while True:
-        match = re.search("\[(\d+),(\d+)\]", answer)
+        match = re.search(r"\[(\d+),(\d+)\]", answer)
         if not match:
             break
         a, b = match.group(1), match.group(2)
         sub = f"[{a},{b}]"
         sub_index = answer.find(sub)
-        answer = answer[:sub_index] + str(int(a) * 3 + int(b) * 2) + answer[sub_index + len(sub) :]
+        answer = (
+            answer[:sub_index]
+            + str(int(a) * 3 + int(b) * 2)
+            + answer[sub_index + len(sub) :]
+        )
 
     return answer
 

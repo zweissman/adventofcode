@@ -1129,8 +1129,10 @@ def run(data):
                 # We don't have this source sonar updated to values in reference to 0 yet, skip
                 skip = True
 
-            if skip == False:
-                scanner_location = get_scanner_location(s1, s2, decodes[(s1, s2)], board, board2)
+            if not skip:
+                scanner_location = get_scanner_location(
+                    s1, s2, decodes[(s1, s2)], board, board2
+                )
                 print(f"{s1} --> {s2} == {scanner_location}")
                 scanner_locations[s2] = scanner_location
 
@@ -1146,7 +1148,7 @@ def run(data):
                 # We don't have this source sonar updated to values in reference to 0 yet, skip
                 skip = True
 
-            if skip == False:
+            if not skip:
                 decode = {v: k for k, v in decodes[(s1, s2)].items()}
                 scanner_location = get_scanner_location(s2, s1, decode, board, board2)
                 print(f"{s1} <-- {s2} == {scanner_location}")
@@ -1154,7 +1156,7 @@ def run(data):
 
     all_beacons = set()
     for index, beacons in enumerate(board2):
-        if beacons == None:
+        if beacons is None:
             print(f"Unmapped scanner {index}")
         else:
             all_beacons.update(beacons)

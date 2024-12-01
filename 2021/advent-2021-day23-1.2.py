@@ -1,10 +1,5 @@
 #!/usr/bin/python3
-import ast
-import heapq
-import itertools
-import re
-import sys
-from collections import Counter, defaultdict, deque
+from collections import Counter
 from copy import deepcopy
 
 # submit(len(G), part="a", day=23, year=2021)

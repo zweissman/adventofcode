@@ -3,29 +3,18 @@
 default_stages: [commit]
 repos:
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.5
+    rev: 1.7.10
     hooks:
       - id: bandit
         args: ["-ll"]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.6
+    rev: v0.8.0
     hooks:
       - id: ruff  # linter
-        args: [ --line-length=100 ]
+        args: [ --line-length=100 , --fix]
       - id: ruff-format  # formatter
-  # - repo: https://github.com/psf/black
-  #   rev: 23.11.0
-  #   hooks:
-  #     - id: black
-  #       types: [file, python]
-  #       args: [--line-length=100]
-  # - repo: https://github.com/timothycrosley/isort
-  #   rev: 5.12.0
-  #   hooks:
-  #     - id: isort
-  #       args: ["--profile", "black", "--line-length=100"]
   - repo: https://github.com/PyCQA/pylint
-    rev: v3.0.1
+    rev: v3.3.1
     hooks:
       - id: pylint
         name: pylint
@@ -40,12 +29,14 @@ repos:
           "--disable=missing-module-docstring,missing-class-docstring,missing-function-docstring"
         ]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.7.1
+    rev: v1.13.0
     hooks:
       - id: mypy
         args: [--install-types, --non-interactive, --show-error-codes, --ignore-missing-imports]
+        language: python
+        types: [python]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v5.0.0
     hooks:
       - id: check-added-large-files
       - id: check-json
@@ -55,38 +46,13 @@ repos:
       - id: trailing-whitespace
       - id: check-merge-conflict
       - id: detect-private-key
-#  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-#    rev: v9.10.0
-#    hooks:
-#      - id: commitlint
-#        stages: [commit-msg]
-#        additional_dependencies: ['@commitlint/config-conventional']
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.12.1-beta
+    rev: v2.13.1-beta
     hooks:
       - id: hadolint
         args: [--ignore, DL3048]
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.37.0
-    hooks:
-      - id: markdownlint
-        args: [--fix]
-        exclude: (^.github/)
-  # - repo: https://github.com/adrienverge/yamllint
-  #   rev: v1.33.0
-  #   hooks:
-  #     - id: yamllint
-  #       files: (\.(yaml|yml)$)
-  #       types: [file]
-  #       args: [-c, /app/config/yamllint.yaml]
-  #       exclude: (.pre-commit-config.yaml)
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.0
+    rev: v3.19.0
     hooks:
     - id: pyupgrade
       args: [--py39-plus]
-  # - repo: https://github.com/crate-ci/typos
-  #   rev: v1.16.5
-  #   hooks:
-  #     - id: typos
-  #       exclude: (.pre-commit-config.yaml)

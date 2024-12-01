@@ -535,7 +535,7 @@ def compare(left, right):
             return -1
         return 0
 
-    if type(left) != type(right):  # pylint: disable=unidiomatic-typecheck
+    if type(left) is not type(right):
         if isinstance(left, list) and isinstance(right, int):
             right = [right]
         elif isinstance(left, int) and isinstance(right, list):

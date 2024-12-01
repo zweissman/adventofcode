@@ -40,8 +40,8 @@ def part1(data: list[str], debug: bool = False) -> int:
 
 def get_variation_count(springs: str, values: str) -> int:
     variations = []
-    for variation in product(" #", repeat=springs.count("?")):
-        variations.append("".join(variation))
+    for spring in product(" #", repeat=springs.count("?")):
+        variations.append("".join(spring))
 
     results = []
     for variation in variations:

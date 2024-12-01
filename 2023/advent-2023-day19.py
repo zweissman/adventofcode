@@ -1,8 +1,8 @@
 # pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
 # pylint: disable=unnecessary-list-index-lookup
 
-from collections import deque
 import pprint
+from collections import deque
 
 pp = pprint.PrettyPrinter()
 

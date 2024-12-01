@@ -304,7 +304,7 @@ DATA = [
 TANK = []
 
 
-class FishClass(object):
+class FishClass:
     def __init__(self, countdown, breed_cycle):
         self.id = len(TANK) + 1
         self.countdown = countdown
