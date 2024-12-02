@@ -2,10 +2,10 @@
 pc-run:
 	clear; pre-commit run --all-files
 
-pc-enable:
+pc-enable pc-on:
 	pre-commit install
 
-pc-disable:
+pc-disable pc-off:
 	pre-commit uninstall
 
 pc-update:
