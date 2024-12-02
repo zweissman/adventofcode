@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 # pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
 # pylint: disable=unnecessary-list-index-lookup, E701
 
@@ -43,10 +44,7 @@ def part1(data: list[str], debug: bool = False) -> int:
             hands[name] = [(hand, bid)]
 
     hands = {
-        k: v
-        for k, v in sorted(
-            hands.items(), key=lambda item: (item[0], item[1][0]), reverse=True
-        )
+        k: v for k, v in sorted(hands.items(), key=lambda item: (item[0], item[1][0]), reverse=True)
     }
 
     if debug:
@@ -75,8 +73,7 @@ def name_hand(hand: str, part: int, debug: bool) -> int:
             hand_dict[c] = 1
 
     sorted_hand_dict = {
-        k: v
-        for k, v in sorted(hand_dict.items(), key=lambda item: item[1], reverse=True)
+        k: v for k, v in sorted(hand_dict.items(), key=lambda item: item[1], reverse=True)
     }
     if debug:
         print(sorted_hand_dict)
@@ -133,10 +130,7 @@ def part2(data: list[str], debug: bool = False) -> int:
             hands[name] = [(hand, bid)]
 
     hands = {
-        k: v
-        for k, v in sorted(
-            hands.items(), key=lambda item: (item[0], item[1][0]), reverse=True
-        )
+        k: v for k, v in sorted(hands.items(), key=lambda item: (item[0], item[1][0]), reverse=True)
     }
 
     if debug:

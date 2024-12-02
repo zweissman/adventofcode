@@ -58,9 +58,7 @@ def part1(data: list[str], debug: bool = False) -> int:
     else:
         raise Exception("Unable to find start")
 
-    while (
-        start not in (connections[-1][1], connections[-1][2]) or len(connections) <= 2
-    ):
+    while start not in (connections[-1][1], connections[-1][2]) or len(connections) <= 2:
         if debug:
             print(f"{connection=}")
 
@@ -188,9 +186,7 @@ def part2(data: list[str], debug: bool = False) -> int:
     else:
         raise Exception("Unable to find start")
 
-    while (
-        start not in (connections[-1][1], connections[-1][2]) or len(connections) <= 2
-    ):
+    while start not in (connections[-1][1], connections[-1][2]) or len(connections) <= 2:
         if debug:
             print(f"{connection=}")
 

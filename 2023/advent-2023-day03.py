@@ -64,9 +64,7 @@ def get_part_number(row: list[str], x_start: int) -> tuple[str, int]:
     return part_number, x - x_start
 
 
-def is_it_a_part(
-    grid: list[list[str]], x_start: int, y_start: int, length: int
-) -> bool:
+def is_it_a_part(grid: list[list[str]], x_start: int, y_start: int, length: int) -> bool:
     if x_start != 0 and is_part(grid[y_start][x_start - 1]):
         # Check left
         return True

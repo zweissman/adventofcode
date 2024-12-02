@@ -225,9 +225,7 @@ def parse_board(board):
                 print(f"Explode ({left_point}, {right_point}) @ {index}")
                 # Explode
                 left_index = add_number(left_point, index - 1, 0, -1, board)
-                right_index = add_number(
-                    right_point, index + 2, len(board) - 1, 1, board
-                )
+                right_index = add_number(right_point, index + 2, len(board) - 1, 1, board)
                 board.pop(index)
                 board[index] = 0
                 board.pop(index - 1)  # remove left bracket
@@ -238,9 +236,7 @@ def parse_board(board):
         if isinstance(board[index], int) and board[index] >= 10:
             # Split
             point = board[index]
-            print(
-                f"Splitting {point} into [{int(point / 2)}, {point-int(point/2)}] @ {index}"
-            )
+            print(f"Splitting {point} into [{int(point / 2)}, {point-int(point/2)}] @ {index}")
 
             nest = find_nest(index - 1, 0, -1, board)
             nest_clean = nest.replace("[", "").replace("]", "")
@@ -322,11 +318,7 @@ def calc_mag(answer):
         a, b = match.group(1), match.group(2)
         sub = f"[{a},{b}]"
         sub_index = answer.find(sub)
-        answer = (
-            answer[:sub_index]
-            + str(int(a) * 3 + int(b) * 2)
-            + answer[sub_index + len(sub) :]
-        )
+        answer = answer[:sub_index] + str(int(a) * 3 + int(b) * 2) + answer[sub_index + len(sub) :]
 
     return answer
 

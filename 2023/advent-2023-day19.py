@@ -92,9 +92,7 @@ def part1(data: list[str], debug: bool = False) -> int:
     return results
 
 
-def calc_result(
-    part: dict[str, int], commands: list, workflow: str, debug: bool
-) -> str:
+def calc_result(part: dict[str, int], commands: list, workflow: str, debug: bool) -> str:
     if debug:
         print(f"{workflow}: {commands}")
 

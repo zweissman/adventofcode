@@ -133,9 +133,7 @@ def reduce_elements(elements, values, debug) -> tuple[list[str], list[int]]:
                 test_string = element[max(0, first_index - value) : first_index + value]
                 if test_string.count("#") == value:
                     # We found what what we are looking for.
-                    element = element[
-                        first_index + value + 1 :
-                    ]  # Take an extra off for the spacer
+                    element = element[first_index + value + 1 :]  # Take an extra off for the spacer
                     elements[i] = element
                     values.pop(i)
 

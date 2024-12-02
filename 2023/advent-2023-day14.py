@@ -197,9 +197,7 @@ def part2x(data: list[str], debug: bool = False) -> int:
                                     continue
                                 y_new = y
 
-                                while (
-                                    y_new + 1 < len(grid) and grid[y_new + 1][x] == "."
-                                ):
+                                while y_new + 1 < len(grid) and grid[y_new + 1][x] == ".":
                                     y_new += 1
 
                                 if y_new > y:
@@ -211,10 +209,7 @@ def part2x(data: list[str], debug: bool = False) -> int:
                                     continue
                                 x_new = x
 
-                                while (
-                                    x_new + 1 < len(grid[0])
-                                    and grid[y][x_new + 1] == "."
-                                ):
+                                while x_new + 1 < len(grid[0]) and grid[y][x_new + 1] == ".":
                                     x_new += 1
 
                                 if x_new > x:

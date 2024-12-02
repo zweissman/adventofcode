@@ -720,9 +720,7 @@ if __name__ == "__main__":
 
         success, accumulator = run(program)
         if success:
-            print(
-                f"found the bug at line {index} with an accumulator before loop of {accumulator}"
-            )
+            print(f"found the bug at line {index} with an accumulator before loop of {accumulator}")
             break
 
         print(f"Accumulator before loop: {accumulator}")

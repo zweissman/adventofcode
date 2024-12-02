@@ -1130,9 +1130,7 @@ def run(data):
                 skip = True
 
             if not skip:
-                scanner_location = get_scanner_location(
-                    s1, s2, decodes[(s1, s2)], board, board2
-                )
+                scanner_location = get_scanner_location(s1, s2, decodes[(s1, s2)], board, board2)
                 print(f"{s1} --> {s2} == {scanner_location}")
                 scanner_locations[s2] = scanner_location
 
