@@ -1,6 +1,3 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
 FILE_NAME = "2024/input/01.txt"
 
 
@@ -26,6 +23,8 @@ def part1(data: list[str], debug: bool = False) -> int:
     list2 = []
 
     for d in data:
+        if debug:
+            print(d)
         a, b = d.split("  ")
         list1.append(int(a.strip()))
         list2.append(int(b.strip()))
@@ -33,8 +32,8 @@ def part1(data: list[str], debug: bool = False) -> int:
     list1 = sorted(list1)
     list2 = sorted(list2)
 
-    for i, _ in enumerate(list1):
-        results += abs(list1[i] - list2[i])
+    for i, value in enumerate(list1):
+        results += abs(value - list2[i])
 
     return results
 
@@ -46,12 +45,13 @@ def part2(data: list[str], debug: bool = False) -> int:
     list2 = []
 
     for d in data:
+        if debug:
+            print(d)
         a, b = d.split("  ")
         list1.append(int(a.strip()))
         list2.append(int(b.strip()))
 
-    for i, x in enumerate(list1):
-        x = list1[i]
+    for x in list1:
         results += x * list2.count(x)
 
     return results

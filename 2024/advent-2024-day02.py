@@ -1,6 +1,3 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
 FILE_NAME = "2024/input/02.txt"
 
 

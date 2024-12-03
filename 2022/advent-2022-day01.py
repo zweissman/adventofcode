@@ -16,12 +16,13 @@ def run(part: int, test_run: bool = False, debug: bool = False):
     return part_function(data=data, debug=debug)
 
 
-def part1(data: list[str], debug: bool = False) -> int: #type: ignore[unused-argument]
+def part1(data: list[str], debug: bool = False) -> int:  # type: ignore[unused-argument]
     max_total = 0
     total = 0
 
     for row in data:
-        if debug: print(row)
+        if debug:
+            print(row)
         if row in (0, ""):
             max_total = max(total, max_total)
             total = 0
