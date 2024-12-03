@@ -1,6 +1,3 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
 FILE_NAME = "2022/input/01.txt"
 
 
@@ -19,12 +16,13 @@ def run(part: int, test_run: bool = False, debug: bool = False):
     return part_function(data=data, debug=debug)
 
 
-def part1(data: list[str], debug: bool = False) -> int:
+def part1(data: list[str], debug: bool = False) -> int: #type: ignore[unused-argument]
     max_total = 0
     total = 0
 
     for row in data:
-        if row == 0 or row == "":
+        if debug: print(row)
+        if row in (0, ""):
             max_total = max(total, max_total)
             total = 0
         else:
@@ -40,7 +38,7 @@ def part2(data: list[str], debug: bool = False) -> int:
     total = 0
 
     for row in data:
-        if row == 0 or row == "":
+        if row in (0, ""):
             if debug:
                 print(total)
             max_total.append(total)
@@ -61,6 +59,6 @@ def part2(data: list[str], debug: bool = False) -> int:
 
 if __name__ == "__main__":
     # print("Test1: ", run(part=1, test_run=True, debug=True)) # 24000
-    # print("Real1: ", run(part=1, test_run=False, debug=False)) # 69626
-    # print("Test2: ", run(part=2, test_run=True, debug=True)) # 45000
+    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 69626
+    # print("Test2: ", run(part=2, test_run=True, debug=True))  # 45000
     print("Real2: ", run(part=2, test_run=False, debug=False))  # 206780

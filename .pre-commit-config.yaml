@@ -11,7 +11,7 @@ repos:
     rev: v0.8.0
     hooks:
       - id: ruff  # linter
-        args: [ --line-length=100 , --fix]
+        args: [ --line-length=100 , --fix, --select, I]
       - id: ruff-format  # formatter
   - repo: https://github.com/PyCQA/pylint
     rev: v3.3.1
@@ -25,8 +25,9 @@ repos:
         args: [
           "-rn", # Only display messages
           "-sn", # Don't display the score
-          "--disable=line-too-long,invalid-name,too-many-locals,broad-exception-raised,too-many-nested-blocks",
-          "--disable=missing-module-docstring,missing-class-docstring,missing-function-docstring"
+          "--disable=line-too-long,invalid-name,broad-exception-raised,global-statement,multiple-statements,duplicate-code",
+          "--disable=too-many-locals,too-many-nested-blocks,too-many-branches,too-many-arguments,too-many-positional-arguments,too-many-statements,too-many-return-statements",
+          "--disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,import-error"
         ]
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.13.0
