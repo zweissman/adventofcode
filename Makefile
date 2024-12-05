@@ -16,3 +16,6 @@ ruff:
 
 mypy:
 	clear; mypy --install-types --non-interactive --show-error-codes --ignore-missing-imports 2023/
+
+pylint lint:
+	clear; pre-commit run pylint

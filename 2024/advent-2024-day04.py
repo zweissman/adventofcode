@@ -1,7 +1,7 @@
 FILE_NAME = "2024/input/04.txt"
 
 
-def run(part: int, test_run: bool = False, debug: bool = False):
+def run(part: int, test_run: bool = False, debug: bool = False) -> int:
     if test_run:
         file = FILE_NAME.replace(".txt", "-test.txt")
     else:
@@ -16,7 +16,7 @@ def run(part: int, test_run: bool = False, debug: bool = False):
     return part_function(data=data, debug=debug)
 
 
-def show(grid: list[str], debug: bool = False):
+def show(grid: list[str], debug: bool = False) -> None:
     if debug:
         print()
         for y, row in enumerate(grid):

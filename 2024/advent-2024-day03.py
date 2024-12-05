@@ -3,7 +3,7 @@ import re
 FILE_NAME = "2024/input/03.txt"
 
 
-def run(part: int, test_run: bool = False, debug: bool = False):
+def run(part: int, test_run: bool = False, debug: bool = False) -> int:
     if test_run:
         file = FILE_NAME.replace(".txt", "-test.txt")
     else:
