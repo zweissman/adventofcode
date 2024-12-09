@@ -1,16 +1,12 @@
-FILE_NAME = "2024/input/02.txt"
-
-
 def run(part: int, test_run: bool = False, debug: bool = False) -> int:
+    file_name = "2024/input/02.txt"
     if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
-    else:
-        file = FILE_NAME
+        file_name = file_name.replace(".txt", "-test.txt")
 
-    with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+    with open(file_name, encoding="utf-8") as file:
+        file_data = file.readlines()
 
-    data = [x.strip() for x in data if not x.startswith("#")]
+    data = [x.strip() for x in file_data if not x.startswith("#")]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)
@@ -62,7 +58,12 @@ def part1(data: list[str], debug: bool = False) -> int:
     return results
 
 
-def part2(data: list[str], bad_count: int = 0, debug: bool = False) -> int:
+def part2(data: list[str], debug: bool = False) -> int:
+    # mypy doesn't like part1 and 2 having different signatures.
+    return real_part2(data, debug)
+
+
+def real_part2(data: list[str], bad_count: int = 0, debug: bool = False) -> int:
     results = 0
 
     for d in data:
@@ -104,7 +105,7 @@ def part2(data: list[str], bad_count: int = 0, debug: bool = False) -> int:
                 del new_numbers[i]
                 new_data = [" ".join(new_numbers)]
 
-                bad_results = part2(new_data, bad_count=1, debug=debug)
+                bad_results = real_part2(new_data, bad_count=1, debug=debug)
                 if bad_results == 1:
                     if debug:
                         print("CORRECTED INDEX")
@@ -116,7 +117,7 @@ def part2(data: list[str], bad_count: int = 0, debug: bool = False) -> int:
                     del new_numbers[1]
                     new_data = [" ".join(new_numbers)]
 
-                    bad_results = part2(new_data, bad_count=1, debug=debug)
+                    bad_results = real_part2(new_data, bad_count=1, debug=debug)
 
                     if bad_results == 1:
                         if debug:
@@ -129,7 +130,7 @@ def part2(data: list[str], bad_count: int = 0, debug: bool = False) -> int:
                 del new_numbers[0]
                 new_data = [" ".join(new_numbers)]
 
-                bad_results = part2(new_data, bad_count=1, debug=debug)
+                bad_results = real_part2(new_data, bad_count=1, debug=debug)
 
                 if bad_results == 1:
                     if debug:
