@@ -11,9 +11,9 @@
 #         folder_name = ""
 
 #     with open(file, encoding="utf-8") as f:
-#         data = f.readlines()
+#         file_data = f.readlines()
 
-#     data = [x.strip() for x in data]
+#     data = [x.strip() for x in file_data]
 #     part_function = part1 if part == 1 else part2
 
 #     return part_function(data=data, folder_name=folder_name, debug=debug)

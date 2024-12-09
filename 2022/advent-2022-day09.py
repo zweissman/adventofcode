@@ -19,9 +19,9 @@ def run(part: int, test_run: bool = False, debug: bool = False):
         y = 500
 
     with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+        file_data = f.readlines()
 
-    data = [x.strip() for x in data]
+    data = [x.strip() for x in file_data]
     if part == 1:
         part_function = part1
         knot_count = 2

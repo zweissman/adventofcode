@@ -15,7 +15,7 @@ ruff:
 	clear; ruff check --select I --fix --line-length=100 .; ruff format --line-length=100 .
 
 mypy:
-	clear; mypy --install-types --non-interactive --show-error-codes --ignore-missing-imports 2023/
+	clear; mypy --install-types --non-interactive --show-error-codes --ignore-missing-imports 2023/ 2024/
 
 pylint lint:
 	clear; pre-commit run pylint
