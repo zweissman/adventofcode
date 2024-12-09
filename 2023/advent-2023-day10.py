@@ -1,24 +1,18 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
 from typing import Optional
 
-FILE_NAME = "2023/input/10.txt"
 
+def run(part: int, test_suffix: str = "", debug: bool = False):  # pylint: disable=duplicate-code
+    file_name = "2023/input/10.txt"
+    if test_suffix:
+        file_name = file_name.replace(".txt", test_suffix + ".txt")
 
-def run(part: int, test_run: bool = False, debug: bool = False):
-    if test_run:
-        file = FILE_NAME.replace(".txt", "-test4.txt")
-    else:
-        file = FILE_NAME
+    with open(file_name, encoding="utf-8") as file:
+        data = file.readlines()
 
-    with open(file, encoding="utf-8") as f:
-        data = f.readlines()
-
-    data = [x.strip() for x in data]
+    data = [x.strip() for x in data if not x.startswith("#")]
     part_function = part1 if part == 1 else part2
 
-    return part_function(data, debug)
+    return part_function(data=data, debug=debug)
 
 
 def part1(data: list[str], debug: bool = False) -> int:
@@ -234,11 +228,11 @@ def show(grid, debug: bool = False):
 
 
 if __name__ == "__main__":
-    final = run(part=1, test_run=True, debug=False)  # 8
-    print("ANSWER:", final)
-    final = run(part=1, test_run=False, debug=False)  # 6828
-    print("ANSWER:", final)
-    final = run(part=2, test_run=True, debug=False)  # 10
-    print("ANSWER:", final)
-    final = run(part=2, test_run=False, debug=False)  # 459
-    print("ANSWER:", final)
+    # print("Test1a: ", run(part=1, test_suffix="-test1a", debug=True))  # 4
+    # print("Test1b: ", run(part=1, test_suffix="-test1b", debug=True))  # 8
+    # print("Real1: ", run(part=1, debug=False))  # 6828
+    # print("Test2a: ", run(part=2, test_suffix="-test2a", debug=True))  # 4
+    # print("Test2b: ", run(part=2, test_suffix="-test2b", debug=True))  # 4
+    # print("Test2c: ", run(part=2, test_suffix="-test2c", debug=True))  # 8
+    # print("Test2d: ", run(part=2, test_suffix="-test2d", debug=True))  # 10
+    print("Real2: ", run(part=2, debug=False))  # 459

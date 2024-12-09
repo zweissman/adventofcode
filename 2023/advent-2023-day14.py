@@ -1,20 +1,16 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
-
 FILE_NAME = "2023/input/14.txt"
 
 
 def run(part: int, test_run: bool = False, debug: bool = False):
     if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
+        file_name = FILE_NAME.replace(".txt", "-test.txt")
     else:
-        file = FILE_NAME
+        file_name = FILE_NAME
 
-    with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+    with open(file_name, encoding="utf-8") as file:
+        file_data = file.readlines()
 
-    data = [x.strip() for x in data]
+    data = [x.strip() for x in file_data]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)
@@ -237,10 +233,9 @@ def part2x(data: list[str], debug: bool = False) -> int:
 def rotate(matrix, degree):
     if degree == 0:
         return matrix
-    elif degree > 0:
+    if degree > 0:
         return rotate(list(zip(*matrix[::-1])), degree - 90)
-    else:
-        return rotate(matrix, 360 + degree)
+    return rotate(matrix, 360 + degree)
 
 
 def show(grid, debug):
@@ -251,7 +246,11 @@ def show(grid, debug):
 
 
 if __name__ == "__main__":
+    # TODO: WRONG
     # print("Test1: ", run(part=1, test_run=True, debug=True))  # 136
+    # TODO: WRONG
     # print("Real1: ", run(part=1, test_run=False, debug=False))  # 106990
-    print("Test2: ", run(part=2, test_run=True, debug=False))  #
-    # print("Real2: ", run(part=2, test_run=False, debug=False))  #
+    # TODO: SLOW
+    # print("Test2: ", run(part=2, test_run=True, debug=False))  #
+    # TODO: SLOW
+    print("Real2: ", run(part=2, test_run=False, debug=False))  #

@@ -1,21 +1,12 @@
-from __future__ import annotations
-
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup, E701
-
-FILE_NAME = "2023/input/07.txt"
-
-
 def run(part: int, test_run: bool = False, debug: bool = False):
+    file_name = "2023/input/07.txt"
     if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
-    else:
-        file = FILE_NAME
+        file_name = file_name.replace(".txt", "-test.txt")
 
-    with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+    with open(file_name, encoding="utf-8") as file:
+        data_file = file.readlines()
 
-    data = [x.strip() for x in data]
+    data = [x.strip() for x in data_file]
     part_function = part1 if part == 1 else part2
 
     return part_function(data, debug)
@@ -145,8 +136,7 @@ def part2(data: list[str], debug: bool = False) -> int:
 
 
 if __name__ == "__main__":
-    # final = run(part=1, test_run=True, debug=True)  # 6440
-    # final = run(part=1, test_run=False, debug=False)  # 253866470
-    final = run(part=2, test_run=True, debug=True)  # 5905
-    # final = run(part=2, test_run=False, debug=False)  # 254494947
-    print("ANSWER:", final)
+    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 6440
+    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 253866470
+    # print("Test2: ", run(part=2, test_run=True, debug=True))  # 5905
+    print("Real2: ", run(part=2, test_run=False, debug=False))  # 254494947

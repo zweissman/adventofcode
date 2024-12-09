@@ -1,21 +1,19 @@
-# pylint: disable=too-many-return-statements,too-many-branches,duplicate-code,unused-argument
-FILE_NAME = "2023/input/01.txt"
+def run(part: int, test_suffix: str = "", debug: bool = False):  # pylint: disable=duplicate-code
+    file = "2023/input/01.txt"
 
-
-def run(part: int, test_run: bool = False, debug: bool = False):  # pylint: disable=duplicate-code
-    if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
-    else:
-        file = FILE_NAME
+    if test_suffix:
+        file = file.replace(".txt", test_suffix + ".txt")
 
     with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+        file_data = f.readlines()
+
+    data = [x.strip() for x in file_data]
     part_function = part1 if part == 1 else part2
 
     return part_function(data, debug)
 
 
-def part1(data: list[str], debug: bool = False) -> int:  # pylint: disable=duplicate-code, unused-argument
+def part1(data: list[str], debug: bool = False) -> int:  # pylint: disable=unused-argument
     results = 0
 
     for line in data:
@@ -35,7 +33,7 @@ def part1(data: list[str], debug: bool = False) -> int:  # pylint: disable=dupli
     return results
 
 
-def part2(data: list[str], debug: bool = False) -> int:  # pylint: disable=duplicate-code
+def part2(data: list[str], debug: bool = False) -> int:  # pylint: disable=unused-argument
     results = 0
 
     for line in data:
@@ -89,5 +87,7 @@ def replace_words(line: str, reverse: bool = False) -> str:
 
 
 if __name__ == "__main__":
-    final = run(part=2, test_run=False, debug=True)
-    print("ANSWER:", final)
+    print("Test1: ", run(part=1, test_suffix="-test1", debug=True))  # 142
+    print("Real1: ", run(part=1, debug=False))  # 54597
+    print("Test2: ", run(part=2, test_suffix="-test2", debug=True))  # 281
+    print("Real2: ", run(part=2, debug=False))  # 54504

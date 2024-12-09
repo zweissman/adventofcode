@@ -1,21 +1,15 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
 from itertools import product
-
-FILE_NAME = "2023/input/12.txt"
 
 
 def run(part: int, test_run: bool = False, debug: bool = False):
+    file_name = "2023/input/12.txt"
     if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
-    else:
-        file = FILE_NAME
+        file_name = file_name.replace(".txt", "-test.txt")
 
-    with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+    with open(file_name, encoding="utf-8") as file:
+        file_data = file.readlines()
 
-    data = [x.strip() for x in data]
+    data = [x.strip() for x in file_data]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)
@@ -54,8 +48,8 @@ def get_variation_count(springs: str, values: str) -> int:
 def get_valid_count(springs: str, values: str) -> int:
     spring_groups = springs.split()
     run_lengths = []
-    for springs in spring_groups:
-        run_lengths.append(str(len(springs)))
+    for spring in spring_groups:
+        run_lengths.append(str(len(spring)))
 
     return ",".join(run_lengths) == values
 
@@ -69,7 +63,7 @@ def merge_run(springs: str, subs: str) -> str:
     return springs
 
 
-def part2(data: list[str], debug: bool = False) -> int:
+def part2(data: list[str], debug: bool = False) -> int:  # pylint: disable = unused-argument
     results = 0
 
     grid = []
@@ -86,9 +80,13 @@ if __name__ == "__main__":
 
     start_time = time.time()
 
-    print("Test1: ", run(part=1, test_run=True, debug=True))  # 21
+    # TODO: WRONG
+    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 21
+    # TODO: SLOW
     # print("Real1: ", run(part=1, test_run=False, debug=False))  # 6949
+    # TODO: MISSING
     # print("Test2: ", run(part=2, test_run=True, debug=True)) #
+    # TODO: MISSING
     # print("Real2: ", run(part=2, test_run=False, debug=False))  #
 
-    print(time.time() - start_time)
+    print("time", time.time() - start_time)

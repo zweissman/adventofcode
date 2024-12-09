@@ -27,7 +27,7 @@ repos:
           "-sn", # Don't display the score
           "--disable=line-too-long,invalid-name,broad-exception-raised,global-statement,multiple-statements,duplicate-code",
           "--disable=too-many-locals,too-many-nested-blocks,too-many-branches,too-many-arguments,too-many-positional-arguments,too-many-statements,too-many-return-statements",
-          "--disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,import-error"
+          "--disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,import-error,fixme"
         ]
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.13.0

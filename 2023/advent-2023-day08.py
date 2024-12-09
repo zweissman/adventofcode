@@ -1,23 +1,18 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
 import itertools
 import math
 from collections.abc import Iterator
 
-FILE_NAME = "2023/input/08.txt"
 
+def run(part: int, test_suffix: str = "", debug: bool = False):
+    file = "2023/input/08.txt"
 
-def run(part: int, test_run: bool = False, debug: bool = False):
-    if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
-    else:
-        file = FILE_NAME
+    if test_suffix:
+        file = file.replace(".txt", test_suffix + ".txt")
 
     with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+        file_data = f.readlines()
 
-    data = [x.strip() for x in data]
+    data = [x.strip() for x in file_data]
     part_function = part1 if part == 1 else part2
 
     return part_function(data, debug)
@@ -102,8 +97,8 @@ def part2(data: list[str], debug: bool = False) -> int:
 
 
 if __name__ == "__main__":
-    # final = run(part=1, test_run=True, debug=True)  # 6
-    # final = run(part=1, test_run=False, debug=False)  # 12361
-    # final = run(part=2, test_run=True, debug=True) # 6
-    final = run(part=2, test_run=False, debug=False)  # 18215611419223
-    print("ANSWER:", final)
+    # print("Test1a: ", run(part=1, test_suffix="-test1a", debug=True))  # 2
+    # print("Test1b: ", run(part=1, test_suffix="-test1b", debug=True))  # 6
+    # print("Real1: ", run(part=1, debug=False))  # 12361
+    # print("Test2: ", run(part=2, test_suffix="-test2", debug=True))  # 6
+    print("Real2: ", run(part=2, debug=False))  # 18215611419223

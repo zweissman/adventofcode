@@ -1,23 +1,15 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
-# import sys
-# sys.setrecursionlimit(15000)
-
-
-FILE_NAME = "2023/input/17.txt"
+import heapq
 
 
 def run(part: int, test_run: bool = False, debug: bool = False):
+    file_name = "2023/input/17.txt"
     if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
-    else:
-        file = FILE_NAME
+        file_name = file_name.replace(".txt", "-test.txt")
 
-    with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+    with open(file_name, encoding="utf-8") as file:
+        file_data = file.readlines()
 
-    data = [x.strip() for x in data]
+    data = [x.strip() for x in file_data]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)
@@ -40,16 +32,14 @@ def part1(data: list[str], debug: bool = False) -> int:
 
     show(grid, debug)
 
-    import heapq
-
     g = [[int(j) for j in row] for row in grid]
 
     q = [(0, 0, 0, -1, 0)]
     seen = set()
     while q:
-        cost, x, y, dir, mult = heapq.heappop(q)
+        cost, x, y, direction, mult = heapq.heappop(q)
 
-        key = (x, y, dir, mult)
+        key = (x, y, direction, mult)
         if key in seen:
             continue
         seen.add(key)
@@ -58,10 +48,10 @@ def part1(data: list[str], debug: bool = False) -> int:
             return cost
 
         for d in range(4):
-            if d == dir and mult == 3:
+            if d == direction and mult == 3:
                 continue
 
-            if d != dir and d // 2 == dir // 2:
+            if d != direction and d // 2 == direction // 2:
                 continue
 
             nx = x - (d == 0) + (d == 1)
@@ -70,7 +60,7 @@ def part1(data: list[str], debug: bool = False) -> int:
             if nx < 0 or nx >= len(g[0]) or ny < 0 or ny >= len(g):
                 continue
 
-            heapq.heappush(q, (cost + g[ny][nx], nx, ny, d, mult * (d == dir) + 1))
+            heapq.heappush(q, (cost + g[ny][nx], nx, ny, d, mult * (d == direction) + 1))
     return cost
 
 
@@ -84,16 +74,14 @@ def part2(data: list[str], debug: bool = False) -> int:
 
     show(grid, debug)
 
-    import heapq
-
     g = [[int(j) for j in row] for row in grid]
 
     q = [(0, 0, 0, 1, 0)]
     seen = set()
     while q:
-        cost, x, y, dir, mult = heapq.heappop(q)
+        cost, x, y, direction, mult = heapq.heappop(q)
 
-        key = (x, y, dir, mult)
+        key = (x, y, direction, mult)
         if key in seen:
             continue
         seen.add(key)
@@ -102,12 +90,12 @@ def part2(data: list[str], debug: bool = False) -> int:
             return cost
 
         for d in range(4):
-            if d != dir and mult < 4:
+            if d != direction and mult < 4:
                 continue
-            if d == dir and mult == 10:
+            if d == direction and mult == 10:
                 continue
 
-            if d != dir and d // 2 == dir // 2:
+            if d != direction and d // 2 == direction // 2:
                 continue
 
             nx = x - (d == 0) + (d == 1)
@@ -116,13 +104,15 @@ def part2(data: list[str], debug: bool = False) -> int:
             if nx < 0 or nx >= len(g[0]) or ny < 0 or ny >= len(g):
                 continue
 
-            heapq.heappush(q, (cost + g[ny][nx], nx, ny, d, mult * (d == dir) + 1))
+            heapq.heappush(q, (cost + g[ny][nx], nx, ny, d, mult * (d == direction) + 1))
 
     return cost
 
 
 if __name__ == "__main__":
-    print("Test1: ", run(part=1, test_run=True, debug=True))  # 102
+    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 102
     # print("Real1: ", run(part=1, test_run=False, debug=False))  #  916
-    # print("Test2: ", run(part=2, test_run=True, debug=True)) # 94
+    # TODO: WRONG
+    print("Test2: ", run(part=2, test_run=True, debug=True))  # 94
+    # TODO: WRONG
     # print("Real2: ", run(part=2, test_run=False, debug=False))  # 1064 too low

@@ -1,7 +1,3 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,too-many-arguments
-# pylint: disable=duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
 from typing import Optional
 
 FILE_NAME = "2023/input/16.txt"
@@ -9,14 +5,14 @@ FILE_NAME = "2023/input/16.txt"
 
 def run(part: int, test_run: bool = False, debug: bool = False):
     if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
+        file_name = FILE_NAME.replace(".txt", "-test.txt")
     else:
-        file = FILE_NAME
+        file_name = FILE_NAME
 
-    with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+    with open(file_name, encoding="utf-8") as file:
+        file_data = file.readlines()
 
-    data = [x.strip() for x in data]
+    data = [x.strip() for x in file_data]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)
@@ -210,4 +206,5 @@ if __name__ == "__main__":
     # print("Test1: ", run(part=1, test_run=True, debug=False))  # 46
     # print("Real1: ", run(part=1, test_run=False, debug=False))  # 7884
     # print("Test2: ", run(part=2, test_run=True, debug=False))  # 51
+    # TODO: SLOW
     print("Real2: ", run(part=2, test_run=False, debug=False))  # 8185

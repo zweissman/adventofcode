@@ -1,9 +1,5 @@
 from __future__ import annotations
 
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
-
 FILE_NAME = "2023/input/05.txt"
 
 
@@ -14,9 +10,9 @@ def run(part: int, test_run: bool = False, debug: bool = False):
         file = FILE_NAME
 
     with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+        file_data = f.readlines()
 
-    data = [x.strip() for x in data]
+    data = [x.strip() for x in file_data]
     part_function = part1 if part == 1 else part2
 
     return part_function(data, debug)
@@ -51,7 +47,7 @@ class Zmap:
         return f"Zmap({len(self.ranges)})"
 
 
-def part1(data: list[str], debug: bool = False) -> int:
+def part1(data: list[str], debug: bool = False) -> int:  # pylint: disable = unused-argument
     seeds = set(data.pop(0).split(": ")[1].split(" "))
     data.pop(0)
 
@@ -112,7 +108,7 @@ def process_map_reverse(data: list[str]) -> Zmap:
     return zmap
 
 
-def part2(data: list[str], debug: bool = False) -> int | None:
+def part2(data: list[str], debug: bool = False) -> int | None:  # pylint: disable = unused-argument
     seeds = data.pop(0).split(": ")[1].split(" ")
     seed_list = []
     for x in range(0, len(seeds), 2):
@@ -160,10 +156,8 @@ def part2(data: list[str], debug: bool = False) -> int | None:
 
 
 if __name__ == "__main__":
-    # final = run(part=1, test_run=True, debug=True)  # 35
-    # final = run(part=1, test_run=False, debug=False)  # 600279879
-    # final = run(part=2, test_run=True, debug=True) # 46
-    final = run(
-        part=2, test_run=False, debug=False
-    )  # 20,191,103 is too high and 15,000,000 is too low
-    print("ANSWER:", final)
+    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 35
+    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 600279879
+    # print("Test2: ", run(part=2, test_run=True, debug=True))  # 35
+    # TODO: SLOW
+    print("Real2: ", run(part=2, test_run=False, debug=False))  # 20191102

@@ -1,5 +1,3 @@
-# pylint: disable=too-many-return-statements,too-many-branches,duplicate-code
-# ruff: noqa: E701
 FILE_NAME = "2023/input/02.txt"
 
 
@@ -10,10 +8,12 @@ def run(part: int, test_run: bool = False, debug: bool = False):
         file = FILE_NAME
 
     with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+        file_data = f.readlines()
+
+    data = [x.strip() for x in file_data]
     part_function = part1 if part == 1 else part2
 
-    return part_function(data, debug)
+    return part_function(data=data, debug=debug)
 
 
 def part1(data: list[str], debug: bool = False) -> int:
@@ -100,5 +100,7 @@ def part2(data: list[str], debug: bool = False) -> int:  # pylint: disable=dupli
 
 
 if __name__ == "__main__":
-    final = run(part=2, test_run=False, debug=False)
-    print("ANSWER:", final)
+    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 8
+    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 2551
+    print("Test2: ", run(part=2, test_run=True, debug=True))  # 2286
+    # print("Real2: ", run(part=2, test_run=False, debug=False))  # 62811

@@ -1,19 +1,12 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
-FILE_NAME = "2023/input/12.txt"
-
-
 def run(part: int, test_run: bool = False, debug: bool = False):
+    file_name = "2023/input/12.txt"
     if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
-    else:
-        file = FILE_NAME
+        file_name = file_name.replace(".txt", "-test.txt")
 
-    with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+    with open(file_name, encoding="utf-8") as file:
+        file_data = file.readlines()
 
-    data = [x.strip() for x in data]
+    data = [x.strip() for x in file_data]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)  # type: ignore[operator]
@@ -156,7 +149,7 @@ def part2(data: list[str], empty_row_count: int = 999999, debug: bool = False) -
 
     grid = []
 
-    for i, d in enumerate(data):
+    for d in data:
         d = d.strip()
         grid.append(list(d))
 
@@ -167,6 +160,6 @@ def part2(data: list[str], empty_row_count: int = 999999, debug: bool = False) -
 
 if __name__ == "__main__":
     print("Test1: ", run(part=1, test_run=True, debug=True))  #
-# print("Real1: ", run(part=1, test_run=False, debug=False))  #
-# print("Test2: ", run(part=2, test_run=True, debug=True)) #
-# print("Real2: ", run(part=2, test_run=False, debug=False))  #
+    # print("Real1: ", run(part=1, test_run=False, debug=False))  #
+    # print("Test2: ", run(part=2, test_run=True, debug=True)) #
+    # print("Real2: ", run(part=2, test_run=False, debug=False))  #

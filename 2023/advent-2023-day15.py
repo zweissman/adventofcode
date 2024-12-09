@@ -1,6 +1,3 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
 from typing import Any
 
 FILE_NAME = "2023/input/15.txt"
@@ -8,14 +5,14 @@ FILE_NAME = "2023/input/15.txt"
 
 def run(part: int, test_run: bool = False, debug: bool = False):
     if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
+        file_name = FILE_NAME.replace(".txt", "-test.txt")
     else:
-        file = FILE_NAME
+        file_name = FILE_NAME
 
-    with open(file, encoding="utf-8") as f:
-        data = f.readlines()
+    with open(file_name, encoding="utf-8") as file:
+        file_data = file.readlines()
 
-    data = [x.strip() for x in data]
+    data = [x.strip() for x in file_data]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)
@@ -42,7 +39,7 @@ def part1(data: list[str], debug: bool = False) -> int:
 def part2(data: list[str], debug: bool = False) -> int:
     results = 0
 
-    map: dict[int, Any] = {new_list: [] for new_list in range(256)}
+    map_: dict[int, Any] = {new_list: [] for new_list in range(256)}
 
     for line in data:
         if line.startswith("//"):
@@ -54,35 +51,35 @@ def part2(data: list[str], debug: bool = False) -> int:
                 left, right = section.split("=")
                 for c in left:
                     key = (key + ord(c)) * 17 % 256
-                for i, val in enumerate(map[key]):
+                for i, val in enumerate(map_[key]):
                     if val.split(" ")[0] == left:
-                        map[key][i] = f"{left} {right}"
+                        map_[key][i] = f"{left} {right}"
                         break
                 else:
-                    map[key].append(f"{left} {right}")
+                    map_[key].append(f"{left} {right}")
 
             else:
                 assert "-" in section
                 left, _ = section.split("-")
                 for c in left:
                     key = (key + ord(c)) * 17 % 256
-                for i, val in enumerate(map[key]):
+                for i, val in enumerate(map_[key]):
                     if val.split(" ")[0] == left:
-                        map[key][i] = ""
+                        map_[key][i] = ""
                         break
 
             if debug:
-                print(key, map[key])
+                print(key, map_[key])
 
-        for k, v in map.items():
+        for k, v in map_.items():
             if len(v) > 0:
                 if debug:
-                    print(k, map[k])
-                map[k] = [val for val in map[k] if val != ""]
+                    print(k, map_[k])
+                map_[k] = [val for val in map_[k] if val != ""]
                 if debug:
-                    print(k, map[k])
+                    print(k, map_[k])
                 lens_value = 0
-                for slot, lens in enumerate(map[k]):
+                for slot, lens in enumerate(map_[k]):
                     lens_value += (k + 1) * (slot + 1) * int(lens.split(" ")[1])
 
                 results += lens_value

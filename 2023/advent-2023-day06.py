@@ -12,9 +12,9 @@ def run(part: int, test_run: bool = False, debug: bool = False):
     #     file = FILE_NAME
 
     # with open(file, encoding="utf-8") as f:
-    #     data = f.readlines()
+    #     file_data = f.readlines()
 
-    # data = [x.strip() for x in data]
+    # data = [x.strip() for x in file_data]
 
     if part == 1:
         if test_run:
@@ -60,12 +60,16 @@ def part2(data: list[tuple[int, int]], debug: bool = False) -> int:
         win_count = 0
         if debug:
             print(time, distance)
+
         for i in range(1, time):
             if (time - i) * i > distance:
                 win_count += 1
             elif win_count > 0:
                 break
-        print(win_count)
+
+        if debug:
+            print(win_count)
+
         if results == 0:
             results = win_count
         else:
@@ -75,8 +79,8 @@ def part2(data: list[tuple[int, int]], debug: bool = False) -> int:
 
 
 if __name__ == "__main__":
-    # final = run(part=1, test_run=True, debug=True)  # 288
-    # final = run(part=1, test_run=False, debug=False)  # 2612736
-    final = run(part=2, test_run=True, debug=True)  # 71503
-    # final = run(part=2, test_run=False, debug=False)  # 29891250
-    print("ANSWER:", final)
+    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 288
+    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 2612736
+    # print("Test2: ", run(part=2, test_run=True, debug=True))  # 71503
+    # TODO: SLOW
+    print("Real2: ", run(part=2, test_run=False, debug=False))  # 29891250
