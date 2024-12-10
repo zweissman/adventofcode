@@ -1,4 +1,4 @@
-def run(part: int, test_suffix: str = "", debug: bool = False):  # pylint: disable=duplicate-code
+def run(part: int, test_suffix: str = "", debug: bool = False):
     file = "2023/input/01.txt"
 
     if test_suffix:

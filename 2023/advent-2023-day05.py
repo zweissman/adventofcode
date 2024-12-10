@@ -1,21 +1,17 @@
 from __future__ import annotations
 
-FILE_NAME = "2023/input/05.txt"
 
+def run(part: int, test_suffix: str = "", debug: bool = False):
+    y, d = __file__.split("advent-")[1].split("-day")
+    file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
 
-def run(part: int, test_run: bool = False, debug: bool = False):
-    if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
-    else:
-        file = FILE_NAME
+    with open(file_name, encoding="utf-8") as file:
+        file_data = file.readlines()
 
-    with open(file, encoding="utf-8") as f:
-        file_data = f.readlines()
-
-    data = [x.strip() for x in file_data]
+    data = [x.strip() for x in file_data if not x.startswith("#")]
     part_function = part1 if part == 1 else part2
 
-    return part_function(data, debug)
+    return part_function(data=data, debug=debug)
 
 
 class Zrange:
@@ -156,8 +152,8 @@ def part2(data: list[str], debug: bool = False) -> int | None:  # pylint: disabl
 
 
 if __name__ == "__main__":
-    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 35
-    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 600279879
-    # print("Test2: ", run(part=2, test_run=True, debug=True))  # 35
+    # print("Test1: ", run(part=1, test_suffix="-test", debug=True))  # 35
+    # print("Real1: ", run(part=1, debug=False))  # 600279879
+    # print("Test2: ", run(part=2, test_suffix="-test", debug=True))  # 46
     # TODO: SLOW
-    print("Real2: ", run(part=2, test_run=False, debug=False))  # 20191102
+    print("Real2: ", run(part=2, debug=False))  # 20191102

@@ -1,4 +1,4 @@
-def run(part: int, test_suffix: str = "", debug: bool = False):  # pylint: disable=duplicate-code
+def run(part: int, test_suffix: str = "", debug: bool = False):
     y, d = __file__.split("advent-")[1].split("-day")
     file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
 

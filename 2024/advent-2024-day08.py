@@ -2,10 +2,9 @@ from collections import defaultdict
 from itertools import combinations
 
 
-def run(part: int, test_run: bool = False, debug: bool = False) -> int:
-    file_name = "2024/input/08.txt"
-    if test_run:
-        file_name = file_name.replace(".txt", "-test.txt")
+def run(part: int, test_suffix: str = "", debug: bool = False):
+    y, d = __file__.split("advent-")[1].split("-day")
+    file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
 
     with open(file_name, encoding="utf-8") as file:
         file_data = file.readlines()
@@ -13,27 +12,27 @@ def run(part: int, test_run: bool = False, debug: bool = False) -> int:
     data = [x.strip() for x in file_data if not x.startswith("#")]
     part_function = part1 if part == 1 else part2
 
-    return part_function(grid=data, debug=debug)
+    return part_function(data=data, debug=debug)
 
 
-def part1(grid: list[str], debug: bool = False) -> int:
-    frequencies = find_frequencies(grid)
+def part1(data: list[str], debug: bool = False) -> int:
+    frequencies = find_frequencies(data)
     if debug:
         print(frequencies)
 
-    nodes = find_nodes1(grid, frequencies, debug)
+    nodes = find_nodes1(data, frequencies, debug)
     if debug:
         print(nodes)
 
     return len(nodes)
 
 
-def part2(grid: list[str], debug: bool = False) -> int:
-    frequencies = find_frequencies(grid)
+def part2(data: list[str], debug: bool = False) -> int:
+    frequencies = find_frequencies(data)
     if debug:
         print(frequencies)
 
-    nodes = find_nodes2(grid, frequencies, debug)
+    nodes = find_nodes2(data, frequencies, debug)
     if debug:
         print(nodes)
 
@@ -144,7 +143,7 @@ def is_inbounds(data: list[str], node: tuple[int, int]) -> bool:
 
 
 if __name__ == "__main__":
-    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 14
-    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 273
-    # print("Test2: ", run(part=2, test_run=True, debug=True))  # 34
-    print("Real2: ", run(part=2, test_run=False, debug=False))  # 1017
+    # print("Test1: ", run(part=1, test_suffix="-test", debug=True))  # 14
+    # print("Real1: ", run(part=1, debug=False))  # 273
+    # print("Test2: ", run(part=2, test_suffix="-test", debug=True))  # 34
+    print("Real2: ", run(part=2, debug=False))  # 1017

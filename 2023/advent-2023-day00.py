@@ -1,4 +1,4 @@
-def run(part: int, test_suffix: str = "", debug: bool = False):  # pylint: disable=duplicate-code
+def run(part: int, test_suffix: str = "", debug: bool = False):
     y, d = __file__.split("advent-")[1].split("-day")
     file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
 
@@ -24,7 +24,7 @@ def part2(data: list[str], debug: bool = False) -> int:
 
 
 if __name__ == "__main__":
-    # print("Test1: ", run(part=1, test_suffix="-test1", debug=True))  #
+    print("Test1: ", run(part=1, test_suffix="-test1", debug=True))  #
     # print("Real1: ", run(part=1, debug=False))  #
     # print("Test2: ", run(part=2, test_suffix="-test2", debug=True))  #
     # print("Real2: ", run(part=2, debug=False))  #

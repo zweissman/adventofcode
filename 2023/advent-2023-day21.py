@@ -1,7 +1,8 @@
-def run(part: int, test_run: bool = False, debug: bool = False):
-    file_name = "2023/input/21.txt"
-    if test_run:
-        file_name = file_name.replace(".txt", "-test.txt")
+def run(part: int, test_suffix: str = "", debug: bool = False):
+    y, d = __file__.split("advent-")[1].split("-day")
+    file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
+
+    if test_suffix != "":
         steps = 6
     else:
         steps = 64
@@ -9,7 +10,7 @@ def run(part: int, test_run: bool = False, debug: bool = False):
     with open(file_name, encoding="utf-8") as file:
         file_data = file.readlines()
 
-    data = [x.strip().replace("S", "O") for x in file_data if not x.startswith("#")]
+    data = [x.strip() for x in file_data if not x.startswith("#")]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, steps=steps, debug=debug)
@@ -63,7 +64,7 @@ def part2(data: list[str], steps: int, debug: bool = False) -> int:  # pylint: d
 
 if __name__ == "__main__":
     # TODO
-    print("Test1: ", run(part=1, test_run=True, debug=True))  #
-    # print("Real1: ", run(part=1, test_run=False, debug=False))  #
-    # print("Test2: ", run(part=2, test_run=True, debug=True))  #
-    # print("Real2: ", run(part=2, test_run=False, debug=False))  #
+    print("Test1: ", run(part=1, test_suffix="-test", debug=True))  #
+    # print("Real1: ", run(part=1, debug=False))  #
+    # print("Test2: ", run(part=2, test_suffix="-test", debug=True))  #
+    # print("Real2: ", run(part=2, debug=False))  #

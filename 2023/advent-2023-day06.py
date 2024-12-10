@@ -1,28 +1,14 @@
-# pylint: disable=too-many-return-statements,too-many-statements,too-many-branches,duplicate-code,unused-argument
-# pylint: disable=unnecessary-list-index-lookup
-
-
 FILE_NAME = "2023/input/06.txt"
 
 
-def run(part: int, test_run: bool = False, debug: bool = False):
-    # if test_run:
-    #     file = FILE_NAME.replace(".txt", "-test.txt")
-    # else:
-    #     file = FILE_NAME
-
-    # with open(file, encoding="utf-8") as f:
-    #     file_data = f.readlines()
-
-    # data = [x.strip() for x in file_data]
-
+def run(part: int, test_suffix: str = "", debug: bool = False):
     if part == 1:
-        if test_run:
+        if test_suffix != "":
             data = [(7, 9), (15, 40), (30, 200)]
         else:
             data = [(45, 305), (97, 1062), (72, 1110), (95, 1695)]
     else:
-        if test_run:
+        if test_suffix != "":
             data = [(71530, 940200)]
         else:
             data = [(45977295, 305106211101695)]
@@ -79,8 +65,7 @@ def part2(data: list[tuple[int, int]], debug: bool = False) -> int:
 
 
 if __name__ == "__main__":
-    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 288
-    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 2612736
-    # print("Test2: ", run(part=2, test_run=True, debug=True))  # 71503
-    # TODO: SLOW
-    print("Real2: ", run(part=2, test_run=False, debug=False))  # 29891250
+    # print("Test1: ", run(part=1, test_suffix="-test", debug=True))  # 288
+    # print("Real1: ", run(part=1, debug=False))  # 2612736
+    # print("Test2: ", run(part=2, test_suffix="-test", debug=True))  # 71503
+    print("Real2: ", run(part=2, debug=False))  # 29891250

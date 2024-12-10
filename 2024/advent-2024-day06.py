@@ -1,18 +1,14 @@
 from copy import deepcopy
 
-FILE_NAME = "2024/input/06.txt"
 
+def run(part: int, test_suffix: str = "", debug: bool = False):
+    y, d = __file__.split("advent-")[1].split("-day")
+    file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
 
-def run(part: int, test_run: bool = False, debug: bool = False) -> int:
-    if test_run:
-        file = FILE_NAME.replace(".txt", "-test.txt")
-    else:
-        file = FILE_NAME
+    with open(file_name, encoding="utf-8") as file:
+        file_data = file.readlines()
 
-    with open(file, encoding="utf-8") as f:
-        data_raw = f.readlines()
-
-    data = [list(x.strip()) for x in data_raw]
+    data = [x.strip() for x in file_data if not x.startswith("#")]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)
@@ -25,7 +21,17 @@ def show(grid: list[list[str]], debug: bool = False) -> None:
             print(y, "".join([str(x) for x in row]))
 
 
+def grid_to_str(data: list[str]) -> list[list[str]]:
+    grid = []
+    for row in data:
+        grid.append(list(row))
+
+    return grid
+
+
 def part1(data: list[list[str]], debug: bool = False) -> int:
+    data = grid_to_str(data)
+
     results = 1
     x, y = find_start(data, debug)
 
@@ -43,7 +49,7 @@ def move(data: list[list[str]], x: int, y: int, d: str, debug: bool) -> int:
     data[y][x] = "X"
 
     while True:
-        if iterations > 200:
+        if iterations > 100:
             return -1
 
         if debug:
@@ -101,6 +107,8 @@ def get_next_dir(d: str) -> str:
 
 
 def part2(data: list[list[str]], debug: bool = False) -> int:
+    data = grid_to_str(data)
+
     results = 0
     start_x, start_y = find_start(data, debug)
 
@@ -142,7 +150,11 @@ def find_start(grid: list[list[str]], debug: bool) -> tuple[int, int]:
 
 
 if __name__ == "__main__":
-    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 41
-    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 4663
-    # print("Test2: ", run(part=2, test_run=True, debug=True))  # 6
-    print("Real2: ", run(part=2, test_run=False, debug=False))  # 1530
+    # TODO: WRONG
+    # print("Test1: ", run(part=1, test_suffix="-test", debug=True))  # 41
+    # TODO: WRONG
+    # print("Real1: ", run(part=1, debug=False))  # 4663
+    # TODO: WRONG
+    # print("Test2: ", run(part=2, test_suffix="-test", debug=True))  # 6
+    # TODO: WRONG and SLOW
+    print("Real2: ", run(part=2, debug=False))  # 1530

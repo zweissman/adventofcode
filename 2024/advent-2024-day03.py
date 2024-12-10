@@ -1,10 +1,9 @@
 import re
 
 
-def run(part: int, test_run: bool = False, debug: bool = False) -> int:
-    file_name = "2024/input/03.txt"
-    if test_run:
-        file_name = file_name.replace(".txt", "-test.txt")
+def run(part: int, test_suffix: str = "", debug: bool = False):
+    y, d = __file__.split("advent-")[1].split("-day")
+    file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
 
     with open(file_name, encoding="utf-8") as file:
         file_data = file.readlines()
@@ -50,7 +49,7 @@ def part2(data: list[str], debug: bool = False) -> int:
 
 
 if __name__ == "__main__":
-    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 161
-    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 168539636
-    # print("Test2: ", run(part=2, test_run=True, debug=True))  # 48
-    print("Real2: ", run(part=2, test_run=False, debug=False))  # 97529391
+    # print("Test1: ", run(part=1, test_suffix="-test", debug=True))  # 161
+    # print("Real1: ", run(part=1, debug=False))  # 168539636
+    # print("Test2: ", run(part=2, test_suffix="-test", debug=True))  # 48
+    print("Real2: ", run(part=2, debug=False))  # 97529391

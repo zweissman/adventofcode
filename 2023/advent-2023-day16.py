@@ -1,18 +1,14 @@
 from typing import Optional
 
-FILE_NAME = "2023/input/16.txt"
 
-
-def run(part: int, test_run: bool = False, debug: bool = False):
-    if test_run:
-        file_name = FILE_NAME.replace(".txt", "-test.txt")
-    else:
-        file_name = FILE_NAME
+def run(part: int, test_suffix: str = "", debug: bool = False):
+    y, d = __file__.split("advent-")[1].split("-day")
+    file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
 
     with open(file_name, encoding="utf-8") as file:
         file_data = file.readlines()
 
-    data = [x.strip() for x in file_data]
+    data = [x.strip() for x in file_data if not x.startswith("#")]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)
@@ -203,8 +199,8 @@ def move(
 
 
 if __name__ == "__main__":
-    # print("Test1: ", run(part=1, test_run=True, debug=False))  # 46
-    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 7884
-    # print("Test2: ", run(part=2, test_run=True, debug=False))  # 51
+    # print("Test1: ", run(part=1, test_suffix="-test", debug=False))  # 46
+    # print("Real1: ", run(part=1, debug=False))  # 7884
+    # print("Test2: ", run(part=2, test_suffix="-test", debug=False))  # 51
     # TODO: SLOW
-    print("Real2: ", run(part=2, test_run=False, debug=False))  # 8185
+    print("Real2: ", run(part=2, debug=False))  # 8185

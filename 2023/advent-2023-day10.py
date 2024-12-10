@@ -1,15 +1,14 @@
 from typing import Optional
 
 
-def run(part: int, test_suffix: str = "", debug: bool = False):  # pylint: disable=duplicate-code
-    file_name = "2023/input/10.txt"
-    if test_suffix:
-        file_name = file_name.replace(".txt", test_suffix + ".txt")
+def run(part: int, test_suffix: str = "", debug: bool = False):
+    y, d = __file__.split("advent-")[1].split("-day")
+    file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
 
     with open(file_name, encoding="utf-8") as file:
-        data = file.readlines()
+        file_data = file.readlines()
 
-    data = [x.strip() for x in data if not x.startswith("#")]
+    data = [x.strip() for x in file_data if not x.startswith("#")]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)

@@ -1,16 +1,11 @@
-FILE_NAME = "2023/input/14.txt"
-
-
-def run(part: int, test_run: bool = False, debug: bool = False):
-    if test_run:
-        file_name = FILE_NAME.replace(".txt", "-test.txt")
-    else:
-        file_name = FILE_NAME
+def run(part: int, test_suffix: str = "", debug: bool = False):
+    y, d = __file__.split("advent-")[1].split("-day")
+    file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
 
     with open(file_name, encoding="utf-8") as file:
         file_data = file.readlines()
 
-    data = [x.strip() for x in file_data]
+    data = [x.strip() for x in file_data if not x.startswith("#")]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)
@@ -247,10 +242,10 @@ def show(grid, debug):
 
 if __name__ == "__main__":
     # TODO: WRONG
-    # print("Test1: ", run(part=1, test_run=True, debug=True))  # 136
+    # print("Test1: ", run(part=1, test_suffix="-test", debug=True))  # 136
     # TODO: WRONG
-    # print("Real1: ", run(part=1, test_run=False, debug=False))  # 106990
+    # print("Real1: ", run(part=1, debug=False))  # 106990
     # TODO: SLOW
-    # print("Test2: ", run(part=2, test_run=True, debug=False))  #
+    # print("Test2: ", run(part=2, test_suffix="-test", debug=False))  #
     # TODO: SLOW
-    print("Real2: ", run(part=2, test_run=False, debug=False))  #
+    print("Real2: ", run(part=2, debug=False))  #
