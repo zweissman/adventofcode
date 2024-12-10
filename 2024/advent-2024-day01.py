@@ -1,12 +1,11 @@
-def run(part: int, test_run: bool = False, debug: bool = False) -> int:
-    file_name = "2024/input/01.txt"
-    if test_run:
-        file_name = file_name.replace(".txt", "-test.txt")
+def run(part: int, test_suffix: str = "", debug: bool = False):  # pylint: disable=duplicate-code
+    y, d = __file__.split("advent-")[1].split("-day")
+    file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
 
     with open(file_name, encoding="utf-8") as file:
         file_data = file.readlines()
 
-    data = [x.strip() for x in file_data]
+    data = [x.strip() for x in file_data if not x.startswith("#")]
     part_function = part1 if part == 1 else part2
 
     return part_function(data=data, debug=debug)
@@ -54,7 +53,7 @@ def part2(data: list[str], debug: bool = False) -> int:
 
 
 if __name__ == "__main__":
-    # print("Test1: ", run(part=1, test_run=True, debug=True)) # 11
-    # print("Real1: ", run(part=1, test_run=False, debug=False)) # 1222801
-    # print("Test2: ", run(part=2, test_run=True, debug=True)) # 31
-    print("Real2: ", run(part=2, test_run=False, debug=False))  # 22545250
+    # print("Test1: ", run(part=1, test_suffix="-test", debug=True)) # 11
+    # print("Real1: ", run(part=1, debug=False)) # 1222801
+    # print("Test2: ", run(part=2, test_suffix="-test", debug=True)) # 31
+    print("Real2: ", run(part=2, debug=False))  # 22545250
