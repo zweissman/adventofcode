@@ -29,7 +29,7 @@ def grid_to_str(data: list[str]) -> list[list[str]]:
     return grid
 
 
-def part1(data: list[list[str]], debug: bool = False) -> int:
+def part1(data: list[str], debug: bool = False) -> int:
     data = grid_to_str(data)
 
     results = 1
@@ -106,7 +106,7 @@ def get_next_dir(d: str) -> str:
     return ""
 
 
-def part2(data: list[list[str]], debug: bool = False) -> int:
+def part2(data: list[str], debug: bool = False) -> int:
     data = grid_to_str(data)
 
     results = 0
