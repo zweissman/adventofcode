@@ -29,7 +29,7 @@ def show(grid: list[str], debug: bool = False) -> None:
     if debug:
         print()
         for y, row in enumerate(grid):
-            print(y, "".join([str(x) for x in row]))
+            print(f"{y:02}", "".join([str(x) for x in row]))
 
 
 def is_inbounds(data: list[str], node: tuple[int, int]) -> bool:
@@ -50,6 +50,19 @@ def grid_to_int(data: list[str]) -> list[list[int]]:
         grid.append([int(x) for x in list(row)])
 
     return grid
+
+
+def find_in_grid(grid: list[list[str]], character: str) -> tuple[int, int]:
+    for y, row in enumerate(grid):
+        try:
+            x = row.index(character)
+        except ValueError:
+            x = -1
+
+        if x != -1:
+            return (x, y)
+
+    return (-1, -1)
 
 
 if __name__ == "__main__":
