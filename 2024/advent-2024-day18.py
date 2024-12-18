@@ -31,7 +31,7 @@ def part1(data: list[str], grid, end, steps, debug: bool = False) -> int:
     load_grid(grid, data[:steps])
 
     show(grid, debug)
-    results = possible_path(grid, (0, 0), end)
+    results = pathfinder(grid, (0, 0), end)
 
     return results
 
@@ -42,7 +42,7 @@ def load_grid(grid: list[list[str]], data: list[str]) -> None:
         grid[y][x] = "#"
 
 
-def possible_path(grid: list[list[str]], start: tuple[int, int], end: tuple[int, int]) -> int:
+def pathfinder(grid: list[list[str]], start: tuple[int, int], end: tuple[int, int]) -> int:
     start_x, start_y = start
     end_x, end_y = end
 
@@ -80,7 +80,7 @@ def part2(data: list[str], grid, end, steps, debug: bool = False) -> str:
 
     show(grid, debug)
 
-    count = possible_path(grid, (0, 0), end)
+    count = pathfinder(grid, (0, 0), end)
     if count == -1:
         print("The steps are set too far")
 
@@ -88,7 +88,7 @@ def part2(data: list[str], grid, end, steps, debug: bool = False) -> str:
         x, y = (int(a) for a in data[i].split(","))
         grid[y][x] = "#"
         show(grid, debug)
-        count = possible_path(grid, (0, 0), end)
+        count = pathfinder(grid, (0, 0), end)
         if count == -1:
             return f"{x},{y}"
 
