@@ -76,7 +76,9 @@ def part2(data: list[str], debug: bool = False) -> int:
             largest_key = k
 
     results = largest
-    print(largest_key)
+
+    if debug:
+        print(largest_key)
 
     return results
 
