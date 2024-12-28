@@ -45,5 +45,4 @@ def part2(data: list[str], debug: bool = False) -> int:
 if __name__ == "__main__":
     # print("Test1: ", run(part=1, test_suffix="-test", debug=True))  # 0
     # print("Real1: ", run(part=1, debug=False))  # 74
-    # print("Test2: ", run(part=2, test_suffix="-test", debug=True))  #
     print("Real2: ", run(part=2, debug=False))  # 1795
