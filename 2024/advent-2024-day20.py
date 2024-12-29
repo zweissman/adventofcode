@@ -161,9 +161,9 @@ def get_pathfinder_distances(
 
 
 if __name__ == "__main__":
-    print("Test1: ", run(part=1, test_suffix="-test", debug=True))  # 44
+    # print("Test1: ", run(part=1, test_suffix="-test", debug=True))  # 44
     # TODO: Slow
     # print("Real1: ", run(part=1, debug=False))  # 1332
-    print("Test2: ", run(part=2, test_suffix="-test", debug=True))  # 285
+    # print("Test2: ", run(part=2, test_suffix="-test", debug=True))  # 285
     # TODO: Slow
-    # print("Real2: ", run(part=2, debug=False))  # 987695
+    print("Real2: ", run(part=2, debug=False))  # 987695
