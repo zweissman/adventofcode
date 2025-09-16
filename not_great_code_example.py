@@ -1,8 +1,6 @@
 import os
-
 os.system("pip install -r requirements.txt")
 import json
-
 from src.config import EnvironmentConfig
 from src.profile_dda import ProfileDDA
 from src.reader import ReaderFactory
