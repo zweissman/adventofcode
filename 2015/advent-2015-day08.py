@@ -64,12 +64,11 @@ def part2(data: list[str], debug: bool = False) -> int:
     results = 0
     show(data, debug=debug)
 
-    literal_results, memory_results, encoded_results = 0, 0, 0
+    literal_results, encoded_results = 0, 0
 
     for row in data:
-        literal, memory, encoded = get_lengths(row)
+        literal, _, encoded = get_lengths(row)
         literal_results += literal
-        memory_results += memory
         encoded_results += encoded
 
     results = encoded_results - literal_results
