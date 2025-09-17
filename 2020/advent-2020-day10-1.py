@@ -150,7 +150,7 @@ def run(data):
     print(data)
 
     for index in range(len(data) - 1):
-        print(f"{data[index]} - {data[index+1]} = {data[index+1] - data[index]}")
+        print(f"{data[index]} - {data[index + 1]} = {data[index + 1] - data[index]}")
         diff = data[index + 1] - data[index]
         counters[str(diff)] += 1
 

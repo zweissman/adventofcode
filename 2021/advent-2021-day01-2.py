@@ -2007,7 +2007,7 @@ def run(data):
     results = 0
 
     for counter in range(len(data) - 3):
-        print(f"{sum(data[counter+1:counter+4])} : {sum(data[counter:counter+3])}")
+        print(f"{sum(data[counter + 1 : counter + 4])} : {sum(data[counter : counter + 3])}")
         if sum(data[counter + 1 : counter + 4]) > sum(data[counter : counter + 3]):
             print("INCREASE")
             results += 1

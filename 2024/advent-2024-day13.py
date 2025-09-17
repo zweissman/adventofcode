@@ -1,3 +1,6 @@
+from ast import literal_eval
+
+
 def run(part: int, test_suffix: str = "", debug: bool = False):
     y, d = __file__.split("advent-")[1].split("-day")
     file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
@@ -22,9 +25,9 @@ def part1(data: list[str], debug: bool = False) -> int:
         button_a = button_a.strip("Button A: X+").replace(" Y+", "")
         button_b = button_b.strip("Button B: X+").replace(" Y+", "")
         prize_str = prize_str.strip("Prize: X=").replace(" Y=", "")
-        a = eval(button_a)  # pylint: disable=eval-used
-        b = eval(button_b)  # pylint: disable=eval-used
-        prize = eval(prize_str)  # pylint: disable=eval-used
+        a = literal_eval(button_a)
+        b = literal_eval(button_b)
+        prize = literal_eval(prize_str)
 
         for b_press in range(0, MAX_TOKEN):
             if (prize[0] - (b[0] * b_press)) % a[0] == 0:
@@ -36,7 +39,7 @@ def part1(data: list[str], debug: bool = False) -> int:
                 if prize == (x, y):
                     if debug:
                         print(
-                            f"Found winner after {int(a_press)}*3 = {int(a_press*3)} + {int(b_press)} tokens"
+                            f"Found winner after {int(a_press)}*3 = {int(a_press * 3)} + {int(b_press)} tokens"
                         )
                     results += int(b_press + a_press * 3)
                     break
@@ -59,9 +62,9 @@ def part2(data: list[str], debug: bool = False) -> int:
         button_a = button_a.strip("Button A: X+").replace(" Y+", "")
         button_b = button_b.strip("Button B: X+").replace(" Y+", "")
         prize_str = prize_str.strip("Prize: X=").replace(" Y=", "")
-        a = eval(button_a)  # pylint: disable=eval-used
-        b = eval(button_b)  # pylint: disable=eval-used
-        prize = eval(prize_str)  # pylint: disable=eval-used
+        a = literal_eval(button_a)
+        b = literal_eval(button_b)
+        prize = literal_eval(prize_str)
         prize = prize[0] + 10000000000000, prize[1] + 10000000000000
 
         numerator = prize[0] * a[1] - prize[1] * a[0]
@@ -82,7 +85,7 @@ def part2(data: list[str], debug: bool = False) -> int:
             if debug:
                 print(
                     prize,
-                    f"Found winner after {int(a_press)}*3 = {int(a_press*3)} + {int(b_press)} tokens",
+                    f"Found winner after {int(a_press)}*3 = {int(a_press * 3)} + {int(b_press)} tokens",
                 )
 
         if len(data) > 0:

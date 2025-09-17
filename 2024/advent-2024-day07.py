@@ -1,3 +1,4 @@
+from ast import literal_eval
 from itertools import product
 
 
@@ -48,7 +49,7 @@ def part1(data: list[str], debug: bool = False) -> int:
                 operator = equation_list[i]
                 second = equation_list[i + 1]
                 equation = f"{total} {operator} {second}"
-                total = eval(equation)  # pylint: disable=eval-used
+                total = literal_eval(equation)
 
             if debug:
                 print(test_value, ": ", equation_list, total)
@@ -92,7 +93,7 @@ def part2(data: list[str], debug: bool = False) -> int:
                     total = int(str(total) + str(second))
                 else:
                     equation = f"{total} {operator} {second}"
-                    total = eval(equation)  # pylint: disable=eval-used
+                    total = literal_eval(equation)
 
             if debug:
                 print(test_value, ": ", equation_list, total)

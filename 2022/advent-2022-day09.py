@@ -60,7 +60,7 @@ def move1(command, dim, debug):
     try:
         for i in range(count):
             if debug:
-                print(f"\nMove {direction} {i+1} of {count}")
+                print(f"\nMove {direction} {i + 1} of {count}")
             if direction == "R":
                 H = (H[0] + 1, H[1])
             elif direction == "L":

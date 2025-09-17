@@ -13,7 +13,7 @@ def run(data):
     skipable = []
 
     for index in range(len(data) - 2 - 1, 0, -1):
-        print(f"comp {index+2}: {data[index+2]} with {index}: {data[index]}")
+        print(f"comp {index + 2}: {data[index + 2]} with {index}: {data[index]}")
         if data[index + 2] - data[index] <= 3:
             skipable.append(data[index + 1])
 

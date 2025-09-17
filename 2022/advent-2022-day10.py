@@ -118,7 +118,7 @@ def addx(arg, debug):
     global X
 
     if debug:
-        print(f"\t$ addx({arg})  X {X} --> {X+arg}")
+        print(f"\t$ addx({arg})  X {X} --> {X + arg}")
     X += arg
 
 

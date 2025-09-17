@@ -65,7 +65,7 @@ def get_plot_cost1(grid: list[list[str]], start_x: int, start_y: int, debug: boo
                 perimeter += 1
 
     if debug:
-        print(f"{area=} {perimeter=}  ={area*perimeter}")
+        print(f"{area=} {perimeter=}  ={area * perimeter}")
 
     return area * perimeter
 
@@ -177,7 +177,7 @@ def get_plot_cost2(grid: list[list[str]], start_x: int, start_y: int, debug: boo
                     sides += 1
 
     if debug:
-        print(f"{area=} {sides=}  ={area*sides} {sorted_visited}")
+        print(f"{area=} {sides=}  ={area * sides} {sorted_visited}")
 
     return area * sides
 

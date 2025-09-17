@@ -1,20 +1,20 @@
 # Good reference list of pre-commit repos:
 # https://gdevops.gitlab.io/tuto_git/tools/pre-commit/repos_hooks/repos_hooks.html#alessandrojcm-commitlint-pre-commit-hook
-default_stages: [commit]
+default_stages: [pre-commit]
 repos:
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.10
+    rev: 1.8.6
     hooks:
       - id: bandit
         args: ["-ll"]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.0
+    rev: v0.13.0
     hooks:
       - id: ruff  # linter
         args: [ --line-length=100 , --fix, --select, I]
       - id: ruff-format  # formatter
   - repo: https://github.com/PyCQA/pylint
-    rev: v3.3.1
+    rev: v3.3.8
     hooks:
       - id: pylint
         name: pylint
@@ -30,14 +30,15 @@ repos:
           "--disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,import-error,fixme,pointless-string-statement"
         ]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.13.0
+    rev: v1.18.1
     hooks:
       - id: mypy
         args: [--install-types, --non-interactive, --show-error-codes, --ignore-missing-imports]
         language: python
         types: [python]
+        additional_dependencies: [pydantic]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
       - id: check-json
@@ -48,12 +49,12 @@ repos:
       - id: check-merge-conflict
       - id: detect-private-key
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.13.1-beta
+    rev: v2.13.1
     hooks:
       - id: hadolint
         args: [--ignore, DL3048]
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.19.0
+    rev: v3.20.0
     hooks:
     - id: pyupgrade
       args: [--py39-plus]

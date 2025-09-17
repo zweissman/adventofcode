@@ -1,0 +1,82 @@
+[build-system]
+build-backend="setuptools.build_meta"
+requires = ["setuptools"]
+
+[project]
+name = "advent-of-code"
+dynamic = ["version"]
+description = "Project to participate in Advent of Code"
+readme = "README.md"
+
+[tool.ruff]
+lint.select = ["ALL"]
+lint.fixable = ["ALL"]
+lint.ignore = [
+    "D100",
+    "D203",
+    "D213",
+    "COM812",   # Disable per ruff's suggestion
+    "N815",
+    "TRY003",
+]
+
+line-length = 120
+indent-width = 4
+show-fixes = true
+src = ["src"]
+target-version = "py313"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 5
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.lint.per-file-ignore]
+# Ignore all pydocstyle linting issues for tests
+"__init__.py" = ["DOC", "D"]
+# PLR2004 enables magic string/int comparisons in tests
+"**/tests/**test_*.py" = ["DOC", "D", "S101", "PLR2004"]
+# N999 is dubious...
+"**/features/steps/**.py" = ["DOC", "D", "S101", "PLR2004", "N999"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+# disallow all relative imports
+ban-relative-imports = "all"
+
+[tool.ruff.lint.pylint]
+allow-magic-value-types = []
+max-nested-blocks = 2
+max-args = 10
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+skip_covered = true
+exclude_lines = ["pragma: no cover"]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+omit = ["env.py"]
+
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+show_error_code_links = true
+hide_error_codes = false
+pretty = true
+python_version = "3.13"
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = "src.*"
+disallow_untyped_defs = true
+disallow_any_unimported = true
+no_implicit_optional = true
+warn_unused_ignores = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true

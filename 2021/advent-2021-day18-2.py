@@ -253,7 +253,9 @@ def parse_board(board):
             # Split
             point = board[index]
             if DEBUG:
-                print(f"Splitting {point} into [{int(point / 2)}, {point-int(point/2)}] @ {index}")
+                print(
+                    f"Splitting {point} into [{int(point / 2)}, {point - int(point / 2)}] @ {index}"
+                )
 
             nest = find_nest(index - 1, 0, -1, board)
             nest_clean = nest.replace("[", "").replace("]", "")

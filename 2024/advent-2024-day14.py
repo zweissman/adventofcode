@@ -1,3 +1,6 @@
+from ast import literal_eval
+
+
 def run(part: int, test_suffix: str = "", debug: bool = False):
     y, d = __file__.split("advent-")[1].split("-day")
     file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
@@ -28,8 +31,8 @@ def part1(data: list[str], width: int, height: int, debug: bool = False) -> int:
         p_str, v_str = d.split()
         p_str = p_str.replace("p=", "")
         v_str = v_str.replace("v=", "")
-        p = eval(p_str)  # pylint: disable=eval-used
-        v = eval(v_str)  # pylint: disable=eval-used
+        p = literal_eval(p_str)
+        v = literal_eval(v_str)
 
         if debug:
             print(p, v)
@@ -71,8 +74,8 @@ def part2(data: list[str], width: int, height: int, debug: bool = False) -> int:
         p_str, v_str = d.split()
         p_str = p_str.replace("p=", "")
         v_str = v_str.replace("v=", "")
-        p = eval(p_str)  # pylint: disable=eval-used
-        v = eval(v_str)  # pylint: disable=eval-used
+        p = literal_eval(p_str)
+        v = literal_eval(v_str)
 
         robots.append((p, v))
 

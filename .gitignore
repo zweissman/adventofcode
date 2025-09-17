@@ -5,3 +5,5 @@
 .venv/
 *.code-workspace
 *.ruff
+*.bak
+.coverage
