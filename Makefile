@@ -2,7 +2,7 @@
 
 LINE_LENGTH = 120
 TEST_ROOT = adventofcode
-CHECK_ROOT = 2024
+CHECK_ROOT = 2015
 
 # Activating the shell usually calls `source`. When running on Windows via WSL, just use `.`
 # Example: . /mnt/d/development/adventofcode/.venv/bin/activate
