@@ -11,7 +11,7 @@ repos:
     rev: v0.13.0
     hooks:
       - id: ruff  # linter
-        args: [ --line-length=100 , --fix, --select, I]
+        args: [ --line-length=120 , --fix, --select, I]
       - id: ruff-format  # formatter
   - repo: https://github.com/PyCQA/pylint
     rev: v3.3.8
