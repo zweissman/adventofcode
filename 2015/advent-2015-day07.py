@@ -45,8 +45,11 @@ In little Bobby's kit's instructions booklet (provided as your puzzle input), wh
 
 """
 
+BIT_WIDTH = 16
+BIT_MASK = (1 << BIT_WIDTH) - 1
 
-def run(part: int, test_suffix: str = "", debug: bool = False):
+
+def run(part: int, output_wire: str, test_suffix: str = "", debug: bool = False):
     y, d = __file__.split("advent-")[1].split("-day")
     file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
 
@@ -56,50 +59,77 @@ def run(part: int, test_suffix: str = "", debug: bool = False):
     data = [x.strip() for x in file_data if not x.startswith("#")]
     part_function = part1 if part == 1 else part2
 
-    return part_function(data=data, debug=debug)
+    return part_function(data=data, output_wire=output_wire, debug=debug)
 
 
-def part1(data: list[str], debug: bool = False) -> int:
+def get_value(x: int | str, wires: dict[str, int]) -> int:
+    if isinstance(x, int):
+        return x
+
+    if isinstance(x, str) and x.isdigit():
+        return int(x)
+
+    return wires[x]
+
+
+def part1(data: list[str], output_wire: str, debug: bool = False) -> int:
     results = 0
-    wires = {}
+    wires: dict[str, int] = {}
 
-    for line in data:
-        op1, op2 = ""
-
-        left, wire = line.split(" -> ")
-
-        if "AND" in left:
-            op1, op2 = left.split(" AND ")
-        elif "OR" in left:
-            op1, op2 = left.split(" OR ")
-        elif "LSHIFT" in left:
-            op1, op2 = left.split(" LSHIFT ")
-        elif "RSHIFT" in left:
-            op1, op2 = left.split(" RSHIFT ")
-        elif "NOT" in left:
-            op1, _ = left.split("NOT ")
-            if op1 in wires:
-                op1 = wires[op1]
-            wires[wire] = int(not int(op1))
-        else:
-            wires[wire] = left
-            continue
+    results = get_results(data, wires, debug)[output_wire]
 
     return results
 
 
-def part2(data: list[str], debug: bool = False) -> int:
+def get_results(data: list[str], wires: dict[str, int], debug: bool) -> dict[str, int]:
+    while len(data):
+        line = data.pop(0)
+        op1, op2 = "", ""
+
+        left, wire = line.split(" -> ")
+
+        try:
+            if "AND" in left:
+                op1, op2 = left.split(" AND ")
+                wires[wire] = get_value(op1, wires) & get_value(op2, wires)
+            elif "OR" in left:
+                op1, op2 = left.split(" OR ")
+                wires[wire] = get_value(op1, wires) | get_value(op2, wires)
+            elif "LSHIFT" in left:
+                op1, op2 = left.split(" LSHIFT ")
+                wires[wire] = get_value(op1, wires) << int(op2)
+            elif "RSHIFT" in left:
+                op1, op2 = left.split(" RSHIFT ")
+                wires[wire] = get_value(op1, wires) >> int(op2)
+            elif "NOT" in left:
+                _, op1 = left.split("NOT ")
+                wires[wire] = ~get_value(op1, wires) & BIT_MASK
+            else:
+                if wire not in wires:
+                    wires[wire] = get_value(left, wires)
+        except KeyError:
+            # The value that we are looking for was not calculated yet. Push to the bottom of the list
+            data.append(line)
+            if debug:
+                print(f"List length: {len(data)}")
+
+    return wires
+
+
+def part2(data: list[str], output_wire: str, debug: bool = False) -> int:
     results = 0
+    wires: dict[str, int] = {}
+
+    a_results = get_results(data.copy(), wires, debug)[output_wire]
+    wires = {"b": a_results}
+
+    results = get_results(data.copy(), wires, debug)[output_wire]
 
     return results
 
 
 if __name__ == "__main__":
-    op1 = "8"
-    #    print(int(not int(op1, 2)))
-    print(bin(op1))
-
-    # print("Test1: ", run(part=1, test_suffix="-test", debug=True))  #
-    # print("Real1: ", run(part=1, debug=False))  #
-    # print("Test2: ", run(part=2, test_suffix="-test", debug=True))  #
-    # print("Real2: ", run(part=2, debug=False))  #
+    # print("Test1: ", run(part=1, output_wire="d", test_suffix="-test", debug=True))  # 72
+    # print("Real1: ", run(part=1, output_wire="a", debug=False))  # 46065
+    # print("Test2: ", run(part=2, output_wire="d", test_suffix="-test", debug=True))  # 72
+    print("Real2: ", run(part=2, output_wire="a", debug=False))  # 14134
