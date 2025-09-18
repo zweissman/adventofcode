@@ -5,10 +5,8 @@ Santa needs help figuring out which strings in his text file are naughty or nice
 A nice string is one with all of the following properties:
 
 It contains at least three vowels (aeiou only), like aei, xazegov, or aeiouaeiouaeiou.
-It contains at least one letter that appears twice in a row, like xx, abcdde (dd), or aabbccdd
-(aa, bb, cc, or dd).
-It does not contain the strings ab, cd, pq, or xy, even if they are part of one of the
-other requirements.
+It contains at least one letter that appears twice in a row, like xx, abcdde (dd), or aabbccdd (aa, bb, cc, or dd).
+It does not contain the strings ab, cd, pq, or xy, even if they are part of one of the other requirements.
 For example:
 
 ugknbfddgicrmopn is nice because it has at least three vowels (u...i...o...), a double letter (...dd...), and none of the disallowed substrings.
@@ -18,23 +16,8 @@ haegwjzuvuyypxyu is naughty because it contains the string xy.
 dvszwmarrgswjxmb is naughty because it contains only one vowel.
 How many strings are nice?
 
-"""
+Your puzzle answer was 236.
 
-
-def run(part: int, test_suffix: str = "", debug: bool = False):
-    y, d = __file__.split("advent-")[1].split("-day")
-    file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
-
-    with open(file_name, encoding="utf-8") as file:
-        file_data = file.readlines()
-
-    data = [x.strip() for x in file_data if not x.startswith("#")]
-    part_function = part1 if part == 1 else part2
-
-    return part_function(data=data, debug=debug)
-
-
-"""
 --- Part Two ---
 Realizing the error of his ways, Santa has switched to a better model of determining whether a string is naughty or nice. None of the old rules apply, as they are all clearly ridiculous.
 
@@ -49,7 +32,22 @@ xxyxx is nice because it has a pair that appears twice and a letter that repeats
 uurcxstgmygtbstg is naughty because it has a pair (tg) but no repeat with a single letter between them.
 ieodomkazucvgmuy is naughty because it has a repeating letter with one between (odo), but no pair that appears twice.
 How many strings are nice under these new rules?
+
+Your puzzle answer was 51.
 """
+
+
+def run(part: int, test_suffix: str = "", debug: bool = False):
+    y, d = __file__.split("advent-")[1].split("-day")
+    file_name = f"{y}/input/{d.strip('.py')}{test_suffix}.txt"
+
+    with open(file_name, encoding="utf-8") as file:
+        file_data = file.readlines()
+
+    data = [x.strip() for x in file_data if not x.startswith("#")]
+    part_function = part1 if part == 1 else part2
+
+    return part_function(data=data, debug=debug)
 
 
 def part1(data: list[str], debug: bool = False) -> int:
