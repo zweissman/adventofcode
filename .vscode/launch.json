@@ -3,11 +3,20 @@
     "configurations": [
         {
             "name": "Python: Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": true
+        },
+        {
+            "name": "Python: New Day",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "create.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["5", "2027"]
         }
     ]
 
