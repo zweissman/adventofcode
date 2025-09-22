@@ -40,6 +40,8 @@ mypy:
 pylint lint:
 	clear; pre-commit run pylint
 
+all: ruff mypy pylint
+
 # requires `pip install pre-commit`
 pc-run:
 	clear; pre-commit run --all-files
