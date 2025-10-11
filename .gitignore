@@ -6,3 +6,4 @@
 *.ruff
 *.bak
 .coverage
+uv.lock
