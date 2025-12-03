@@ -1,12 +1,18 @@
-[build-system]
-build-backend="setuptools.build_meta"
-requires = ["setuptools"]
-
 [project]
+version = "0.1.0"
 name = "advent-of-code"
-dynamic = ["version"]
 description = "Project to participate in Advent of Code"
 readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "heapdict>=1.0.1",
+    "mypy>=1.18.2",
+    "pre-commit>=4.3.0",
+    "pylint>=3.3.9",
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.14.0",
+]
 
 [tool.ruff]
 lint.select = ["ALL"]
@@ -15,7 +21,7 @@ lint.ignore = [
     "D100",
     "D203",
     "D213",
-    "COM812",   # Disable per ruff's suggestion
+    "COM812",   # Disable per ruffs suggestion
     "N815",
     "TRY003",
 ]
@@ -23,8 +29,8 @@ lint.ignore = [
 line-length = 120
 indent-width = 4
 show-fixes = true
-src = ["src"]
-target-version = "py313"
+src = ["."]
+target-version = "py312"
 
 [tool.ruff.lint.mccabe]
 max-complexity = 5
@@ -57,7 +63,7 @@ exclude_lines = ["pragma: no cover"]
 
 [tool.coverage.run]
 branch = true
-source = ["src"]
+source = ["."]
 omit = ["env.py"]
 
 [tool.mypy]
@@ -67,11 +73,11 @@ ignore_missing_imports = true
 show_error_code_links = true
 hide_error_codes = false
 pretty = true
-python_version = "3.13"
+python_version = "3.12"
 plugins = ["pydantic.mypy"]
 
 [[tool.mypy.overrides]]
-module = "src.*"
+module = "*"
 disallow_untyped_defs = true
 disallow_any_unimported = true
 no_implicit_optional = true

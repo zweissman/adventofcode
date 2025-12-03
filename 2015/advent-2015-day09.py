@@ -70,9 +70,7 @@ def part1(data: list[str], debug: bool = False) -> int:
     return results
 
 
-def find_shortest_route(
-    lookup: dict[tuple[str, str], int], cities: set[str], debug: bool = False
-) -> int:
+def find_shortest_route(lookup: dict[tuple[str, str], int], cities: set[str], debug: bool = False) -> int:
     shortest_distance = 99999999
 
     for route in itertools.permutations(cities):
@@ -111,9 +109,7 @@ def part2(data: list[str], debug: bool = False) -> int:
     return results
 
 
-def find_longest_route(
-    lookup: dict[tuple[str, str], int], cities: set[str], debug: bool = False
-) -> int:
+def find_longest_route(lookup: dict[tuple[str, str], int], cities: set[str], debug: bool = False) -> int:
     longest_distance = 0
 
     for route in itertools.permutations(cities):

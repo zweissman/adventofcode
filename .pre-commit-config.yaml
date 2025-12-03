@@ -8,13 +8,13 @@ repos:
       - id: bandit
         args: ["-ll"]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.13.0
+    rev: v0.14.0
     hooks:
       - id: ruff  # linter
         args: [ --line-length=120 , --fix, --select, I]
       - id: ruff-format  # formatter
   - repo: https://github.com/PyCQA/pylint
-    rev: v3.3.8
+    rev: v3.3.9
     hooks:
       - id: pylint
         name: pylint
@@ -30,7 +30,7 @@ repos:
           "--disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,import-error,fixme,pointless-string-statement"
         ]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.18.1
+    rev: v1.18.2
     hooks:
       - id: mypy
         args: [--install-types, --non-interactive, --show-error-codes, --ignore-missing-imports]
@@ -49,12 +49,12 @@ repos:
       - id: check-merge-conflict
       - id: detect-private-key
   - repo: https://github.com/hadolint/hadolint
-    rev: v2.13.1
+    rev: v2.14.0
     hooks:
       - id: hadolint
         args: [--ignore, DL3048]
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.20.0
+    rev: v3.21.0
     hooks:
     - id: pyupgrade
       args: [--py39-plus]
