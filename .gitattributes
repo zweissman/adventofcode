@@ -1,0 +1,7 @@
+###############################################################################
+# behavior for text files with UNIX line endings
+#
+# Files that Linux needs to interpret
+###############################################################################
+*.py text eol=lf
+*.txt text eol=lf
